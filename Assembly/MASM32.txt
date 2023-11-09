@@ -1,0 +1,17 @@
+Compilation & Link
+-------------------
+
+Those commands appears to work well:  
+  
+	1) ml /c /Zd /coff hello.asm
+	
+	   Command Modifier:
+	   	/c  --> No linking
+		/Zd --> Add line number in debug
+	   
+	2) link /SUBSYSTEM:CONSOLE hello.obj
+	
+	 	Command Modifier:
+		   /SUBSYSTEM:CONSOLE --> Link a Console application (instead of WINDOWS)
+		   
+		   

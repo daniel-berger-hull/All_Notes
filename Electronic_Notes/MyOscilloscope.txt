@@ -1,0 +1,15 @@
+
+Setting Working:
+
+    Trigger Section
+         Mode:  Auto
+         
+         Source
+         	EXT Input: VERT Mode  (Blue)
+         	EXT (Right side)
+         	
+
+
+The following link helped my to figure out all 
+
+https://www.youtube.com/watch?v=DkAY-iqnYrk

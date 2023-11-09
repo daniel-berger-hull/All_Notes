@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=F3_USB_USERPORT.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\F3_USB_USERPORT -TC:\CooCox\CoIDE\configuration\ProgramData\F3_USB_USERPORT/arm-gcc-link.ld -g">
+      <target file="F3_USB_USERPORT.elf" lastModified="15a918dac8a">
+         <source file="..\obj\usb_core.o" lastModified="15a918d935c"/>
+         <source file="..\obj\stm32f30x_rcc.o" lastModified="15a918d9475"/>
+         <source file="..\obj\usb_int.o" lastModified="15a918d956e"/>
+         <source file="..\obj\usb_desc.o" lastModified="15a918d9668"/>
+         <source file="..\obj\usb_regs.o" lastModified="15a918d97a0"/>
+         <source file="..\obj\hw_config.o" lastModified="15a918d98d8"/>
+         <source file="..\obj\usb_prop.o" lastModified="15a918d99d1"/>
+         <source file="..\obj\stm32f30x_it.o" lastModified="15a918d9afa"/>
+         <source file="..\obj\stm32f30x_gpio.o" lastModified="15a918d9bf6"/>
+         <source file="..\obj\usb_pwr.o" lastModified="15a918d9cef"/>
+         <source file="..\obj\usb_init.o" lastModified="15a918d9dd9"/>
+         <source file="..\obj\main.o" lastModified="15a918d9ef2"/>
+         <source file="..\obj\stm32f30x_exti.o" lastModified="15a918d9fed"/>
+         <source file="..\obj\stm32f30x_i2c.o" lastModified="15a918da106"/>
+         <source file="..\obj\usb_sil.o" lastModified="15a918da1f0"/>
+         <source file="..\obj\system_stm32f30x_temp.o" lastModified="15a918da2da"/>
+         <source file="..\obj\stm32f30x_misc.o" lastModified="15a918da3c4"/>
+         <source file="..\obj\usb_endp.o" lastModified="15a918da4ae"/>
+         <source file="..\obj\startup_stm32f30x.o" lastModified="15a918da569"/>
+         <source file="..\obj\stm32f30x_syscfg.o" lastModified="15a918da653"/>
+         <source file="..\obj\usb_mem.o" lastModified="15a918da74c"/>
+         <source file="..\obj\stm32f3_discovery.o" lastModified="15a918da836"/>
+         <source file="..\obj\usb_istr.o" lastModified="15a918da930"/>
+      </target>
+   </processor>
+</history>

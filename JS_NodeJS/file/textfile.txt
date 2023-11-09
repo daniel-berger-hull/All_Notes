@@ -1,0 +1,14 @@
+What Is HTML5?
+==============
+
+
+HTML5 is the current active specification for HTML, or Hypertext Markup Language.
+HTML forms the content layer of the web, providing a way to structure information 
+in a way that can be rendered by browsers and processed by search engine crawlers.
+HTML5 was initially released in 2008, and has added additional features since then. 
+
+It improves on earlier versions by enabling native multimedia content, support for 
+SVG and MathML vector graphics, and new semantic document elements.
+HTML is useful on its own, but much of its power is unlocked by the web’s 
+other layers. CSS is the styling layer that determines how this content is displayed. 
+JavaScript is the behavior layer that allows user interaction and dynamic data manipulation.

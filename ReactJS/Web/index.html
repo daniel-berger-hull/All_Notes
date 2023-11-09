@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS Notes</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <script>
+
+        const testWriteFile = ( fileName ) => {
+                console.log('Writing to file ' + fileName);
+
+
+
+                var file = new File(fileName + '.txt');
+                var str = "My string of text";
+
+                file.open("w"); // open file with write access
+                file.writeln("First line of text");
+                file.writeln("Second line of text " + str);
+                file.write(str);
+                file.close();
+        }
+
+        function createReactComponent() {
+            var content = document.getElementById("componentName").value;
+
+            // window.alert("sometext is " + content);
+
+
+            testWriteFile( content );
+
+
+
+
+            
+        }
+    </script>
+   
+    <header>
+        <div class="wrapper">
+            <div id="page-title-section">
+                <img src="reactjslogo.png" alt="reactjs logo" width="170" height="150">  
+                <span id="page-title">ReactJS</span>
+                
+            </div>
+        </div>
+        
+    </header>
+    <div class="wrapper">
+        <div id="create-component-section">
+                <span class="subsection-title">Create new Component</span>
+                <div class="flat-section">
+                    <span>Name:</span>
+                    <input type="text" id="componentName" name="fname">
+                </div>
+                <div class="flat-section">
+                    <span>Component Type:</span>
+                    <input type="radio" id="class" name="gender" value="male">
+                    <label for="class">Class</label><br>
+                    <input type="radio" id="function" name="gender" value="female">
+                    <label for="function">Function</label><br>
+                    <button class="action-button"  style="margin-left: 25px;" onclick="createReactComponent()">Save As...</button>
+                </div>
+               
+
+        </div>
+        <span>ReactJS Notes</span>
+        <pre><code>
+        function test() {
+           console.log('test');
+           console.log('test'); console.log('test'); console.log('test'); console.log('test'); console.log('test');
+
+        }</code></pre>
+    </div>
+    
+</body>
+</html>

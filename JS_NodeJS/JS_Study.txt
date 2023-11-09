@@ -1,0 +1,73 @@
+Symbol:
+=========
+
+Appears to create unique keys...
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+
+
+mixin:
+======
+
+A great way to enrich a class
+
+Object Composition:
+===================
+
+An a safer alternative to mixin
+
+https://raganwald.com/2016/07/20/prefer-composition-to-inheritance.html
+
+
+Symbol:
+=========
+
+Appears to create unique keys...
+
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+
+
+Promise & async / await
+=======================
+
+Need to push further the way NodeJS and Javascript are handling the asychronus and threading in general
+
+ 
+Jest:
+=====
+
+  Testing framework for NodeJS and ReactJS.
+ 
+ 
+
+Object Composition:
+
+===================
+
+
+An a safer alternative to mixin
+Web Site: https://raganwald.com/2016/07/20/prefer-composition-to-inheritance.html
+
+ 
+
+FACULATIVE STUDIES
+
+==================
+
+ 
+
+Win32:
+
+======
+
+ 
+
+  Few NPM libs makes possible to interaction with Windows...
+
+ 
+
+   win32-api            --> Can access the Win32 API  (i.e Access a Win32 Frame, Get the default printer, etc)
+
+   windows-build-tools  --> Set of tools to help the development (VisualStudio C++ compiler set)
+
+ 

@@ -1,0 +1,243 @@
+
+
+GENERAL PROJECT SETTINGS
+=========================
+
+1 - Create a Win32 Console Project
+
+
+2 In the project configuration 
+
+2.1 - Change Directories [ In Configuration Properties/VC++ Directories/ ]
+
+--> Include Directories:
+	D:\data\Programming\Graphic\SDL2\SDL2-2.0.14\include
+--> Libary  Directories:
+	D:\data\Programming\Graphic\SDL2\SDL2-2.0.14\lib\x86
+
+2.2  - Chang  [ In Configuration Properties/Linker/input ]
+  
+	Add the following:
+		SDL2.lib
+		SDL2main.lib
+
+3 - Change the main cpp file of the project
+  3.1 Modify the main method signature to
+  
+  	int main(int argc, char* argv[])
+  	
+  	** Linker won't find the main function during compilation otherwise ***
+  
+  3.2 Add include, define and variables
+  
+  	#include <SDL.h>
+
+	#define	SCREEN_WIDTH   500
+	#define SCREEN_HEIGHT  500
+	#define OK                0
+
+	...
+        SDL_Window* win;
+	SDL_Renderer* render;
+
+    3.3 Add init and clean up method:
+    
+    
+	    int init()
+	    {
+		// retutns zero on success else non-zero
+		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+			printf("error initializing SDL: %s\n", SDL_GetError());
+		}
+
+		win = SDL_CreateWindow("GAME", // creates a window
+			SDL_WINDOWPOS_CENTERED,
+			SDL_WINDOWPOS_CENTERED,
+			SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+
+
+		// triggers the program that controls
+		// your graphics hardware and sets flags
+		Uint32 render_flags = SDL_RENDERER_ACCELERATED;
+
+		// creates a renderer to render our images
+		render = SDL_CreateRenderer(win, -1, render_flags);
+
+		return 0;
+	     }
+	     
+	     int cleanUp()
+	     {
+	     
+	     	SDL_DestroyRenderer(render);
+	     	SDL_DestroyWindow(win);
+	     	SDL_Quit();
+	     
+	     	return 0;
+	   }
+	   
+     3.4 Add a redraw method:
+	int redrawScreen()
+	{
+		SDL_SetRenderDrawColor(render, 0x00, 0x00, 0x00, 0xFF);
+		SDL_RenderClear(render);
+
+		SDL_SetRenderDrawColor(render, 0xF8, 0xB0, 0x90, 0xFF);
+
+		//SDL_RenderFillRects(render, rects, 20);
+
+		SDL_RenderPresent(render);
+		return 0;
+	}
+	
+3.5 Modify the main:
+
+
+int main(int argc, char* argv[])
+{
+	init();
+
+	bool quit = false;
+
+	// annimation loop
+	while (!quit) {
+		SDL_Event event;
+
+		// Events mangement
+		while (SDL_PollEvent(&event)) {
+			switch (event.type) {
+
+			case SDL_QUIT:
+				// handling of close button
+				quit = true;
+				break;
+
+			case SDL_KEYDOWN:
+				// keyboard API for key pressed
+				switch (event.key.keysym.scancode) {
+				case SDL_SCANCODE_W:
+				case SDL_SCANCODE_UP:
+					//dest.y -= speed / 30;
+					break;
+				case SDL_SCANCODE_A:
+				case SDL_SCANCODE_LEFT:
+					//dest.x -= speed / 30;
+					break;
+				case SDL_SCANCODE_S:
+				case SDL_SCANCODE_DOWN:
+					//dest.y += speed / 30;
+					break;
+				case SDL_SCANCODE_D:
+				case SDL_SCANCODE_RIGHT:
+					//dest.x += speed / 30;
+					break;
+				case SDL_SCANCODE_ESCAPE:
+					// handling of close button
+					//cl.draw(render); 
+					quit = true;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		redrawScreen();
+		SDL_Delay(1000 / 60);  // calculates to 60 fps
+	}
+
+
+	cleanUp();
+
+	return OK;
+}
+
+
+PRINT TEXT WITH SDL
+====================
+
+SDL doesn't have a support for the text, and you need to use the associated library TTF.
+Note: In some docs, TTF appears to rely itself on the SDL Image library.
+      BUT, I tried without it and it still works...
+
+Change in the 
+
+ A) Change Directories [ In Configuration Properties/VC++ Directories/ ]
+	Include:
+  		D:\data\Programming\Graphic\SDL2\SDL2_ttf-2.0.15\include
+	  	D:\data\Programming\Graphic\SDL2\SDL2_image-2.0.5\include		*** May Be facultative
+	Lib:
+		D:\data\Programming\Graphic\SDL2\SDL2_ttf-2.0.15\lib\x86
+  		D:\data\Programming\Graphic\SDL2\SDL2_image-2.0.5\lib\x86   		*** May Be facultative
+
+ B) Change  [ In Configuration Properties/Linker/input ]
+		  
+	Add the following:
+		
+		SDL2_ttf.lib
+		SDL2_image.lib  *** May Be facultative
+
+ C) Initialisation  & Cleanup
+ 
+ Add the include:
+ 	#include <SDL_ttf.h>
+ 
+   Add those global variables:
+   	TTF_Font* font; // Declare a SDL_ttf font : font
+	SDL_Texture* text_texture;
+	SDL_Surface* text;
+	SDL_Color color = { 255, 0, 0 };
+ 
+ 
+   Add this code in your init() method:
+   
+ 	if (IMG_Init(IMG_INIT_PNG) < 0) {
+ 		printf("Error initializing SDL_image: %d\n", IMG_GetError()); 
+ 		return false;
+ 	}
+ 
+ 
+ 	if (TTF_Init() < 0) {
+ 		printf("Error initializing SDL_ttf: %d\n", TTF_GetError());
+ 		return -1;
+	}
+	
+	// Be carefull to give the exact and full URL of the font file, 
+	// otherwise, the pointer to the font will be null and it won't work 
+	font = TTF_OpenFont("C:\\Windows\\Fonts\\arial.ttf", 24); // Open a font & set the font size
+	if (!font) {
+		printf("Failed to load font: %d\n", TTF_GetError());
+	}
+   And add this in your cleanup method:
+	
+	TTF_CloseFont(font);
+	
+		*** This should already be there, so don't add it!!! ***
+		SDL_DestroyRenderer(render);   
+		SDL_DestroyWindow(win);
+		*** 
+	
+	
+	TTF_Quit();
+	IMG_Quit();
+		*** This should already be there, so don't add it!!! ***
+		SDL_Quit();
+		*** 
+ 
+ D) Printing of text
+ 
+   finally, this is the code that prints, so this in your redraw method:
+   
+   
+   text = TTF_RenderText_Solid(font, "Hello World!", color);   	   
+   text_texture = SDL_CreateTextureFromSurface(render, text);
+   SDL_Rect dest = { 0, 0, text->w, text->h };
+   
+   SDL_RenderCopy(render, text_texture, NULL, &dest);
+   
+   
+   SDL_DestroyTexture(text_texture);
+   SDL_FreeSurface(text);
+   
+   	*** This should already be there, so don't add it!!! ***
+	SDL_RenderPresent(render);

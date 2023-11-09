@@ -1,0 +1,24 @@
+void genericTask( void * parameter )
+{
+ 
+    for( int i = 0;i<10;i++ ){
+ 
+        //printf("TaskOne Tick\n");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+    }
+ 
+    printf("genericTask Ending task 1\n");
+    vTaskDelete( NULL );
+}
+
+
+void app_main()
+{
+    xTaskCreate(  genericTask,       /* Task function. */
+                     "genericTask",     /* String with name of task. */
+                     10000,             /* Stack size in words. */
+                     NULL,              /* Parameter passed as input of the task */
+                     2,                 /* Priority of the task. */
+                     NULL); 
+
+}

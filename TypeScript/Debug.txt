@@ -1,0 +1,33 @@
+Debugging TypeScript with VS Code
+=================================
+
+ Note:    This is from a YouTube video  https://www.youtube.com/watch?v=f3i9b3uK00U
+ Note 2:  This require a NodeJS project (Still not found good way to debug web page) 
+ 
+ 1 - Install following library in your project with command:
+  
+        npm install --save-dev ts-node tsconfig-paths
+
+ 2 - Create VS VSCode launch file       
+    i)  Click on left hand menu icon 'Run and Debug'
+    ii)  Click on link 'create a launch.json file'
+    iii) From top menu (appears when click on step ii) ), selecte 'NodeJS' 
+    iv) Make sure that you have all the element in your launch.json file
+    
+     "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Debug app.ts typescript simple class",		
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "program": "${workspaceFolder}\\app.ts",
+***New          "runtimeArgs": [ "-r", "ts-node/register" , "-r", "tsconfig-paths/register"] ,
+***New          "console": "integratedTerminal",
+                "outFiles": [
+                    "${workspaceFolder}/**/*.js"
+                ]
+            }
+    ]

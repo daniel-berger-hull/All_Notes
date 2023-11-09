@@ -1,0 +1,45 @@
+Draw Bitmap:
+
+HBITMAP g_hbmBackground = NULL;
+
+
+In the Window event Procedure:
+
+
+ case WM_CREATE:
+        {
+            g_hbmBackground = (HBITMAP)LoadImage(hInst,
+                            L"c:/data/car.bmp",
+                            IMAGE_BITMAP,
+                            0, 0,
+                            LR_LOADFROMFILE | LR_LOADTRANSPARENT);  //
+
+            if (g_hbmBackground == NULL)
+                MessageBox(hWnd, L"Could not load bitmap!", L"Error", MB_OK | MB_ICONEXCLAMATION);
+            
+        }
+        break;
+ 
+  case WM_PAINT:
+         {
+             PAINTSTRUCT ps;
+             HDC             hdcMem;
+             HGDIOBJ         oldBitmap;
+             BITMAP          bitmap;
+ 
+             HDC hdc = BeginPaint(hWnd, &ps);
+ 
+             hdcMem = CreateCompatibleDC(hdc);
+             oldBitmap = SelectObject(hdcMem, g_hbmBackground);
+ 
+             GetObject(g_hbmBackground, sizeof(bitmap), &bitmap);
+             BitBlt(hdc, 0, 0, bitmap.bmWidth, bitmap.bmHeight, hdcMem, 0, 0, SRCCOPY);
+ 
+             SelectObject(hdcMem, oldBitmap);
+             DeleteDC(hdcMem);
+ 
+ 
+             // TODO: Add any drawing code that uses hdc here...
+             EndPaint(hWnd, &ps);
+         }
+        break;

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=F103_LCD_IL9341.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\F103_LCD_IL9341 -TC:\CooCox\CoIDE\configuration\ProgramData\F103_LCD_IL9341/arm-gcc-link.ld -g">
+      <target file="F103_LCD_IL9341.elf" lastModified="1560f0ff955">
+         <source file="..\obj\delay.o" lastModified="1560f0feb51"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="1560f0fec52"/>
+         <source file="..\obj\core.o" lastModified="1560f0fecda"/>
+         <source file="..\obj\fps_counter.o" lastModified="1560f0fed5f"/>
+         <source file="..\obj\primitives.o" lastModified="1560f0fedd1"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="1560f0fee42"/>
+         <source file="..\obj\startup_stm32f10x_md.o" lastModified="1560f0fee9a"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="1560f0fef26"/>
+         <source file="..\obj\main.o" lastModified="1560f0ff022"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="1560f0ff0bb"/>
+         <source file="..\obj\encoder.o" lastModified="1560f0ff12c"/>
+         <source file="..\obj\graph.o" lastModified="1560f0ff1c1"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="1560f0ff25e"/>
+         <source file="..\obj\text.o" lastModified="1560f0ff2eb"/>
+         <source file="..\obj\syscalls.o" lastModified="1560f0ff38b"/>
+         <source file="..\obj\stm32f10x_dma.o" lastModified="1560f0ff407"/>
+         <source file="..\obj\fill.o" lastModified="1560f0ff483"/>
+         <source file="..\obj\itoa.o" lastModified="1560f0ff4d4"/>
+         <source file="..\obj\misc.o" lastModified="1560f0ff547"/>
+         <source file="..\obj\stm32f10x_spi.o" lastModified="1560f0ff5d3"/>
+         <source file="..\obj\dma.o" lastModified="1560f0ff65e"/>
+         <source file="..\obj\usart.o" lastModified="1560f0ff6d3"/>
+      </target>
+   </processor>
+</history>

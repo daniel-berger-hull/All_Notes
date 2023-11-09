@@ -1,0 +1,21 @@
+
+*** DOWNLOADS ***
+
+
+Rasbian Lite - Jessie:
+-----------------------
+
+The Jessie version is now harder to find (the offical rPI web site points to the new
+Stretch version)
+
+https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2017-07-05/
+
+
+*** HOW TO ***
+
+
+Using a PI as USB device on a PC
+---------------------------------
+
+That tech is very usefull for the rPI Zero, 
+http://www.circuitbasics.com/raspberry-pi-zero-ethernet-gadget/

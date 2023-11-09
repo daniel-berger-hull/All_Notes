@@ -1,0 +1,46 @@
+Using CooCox IDE:
+
+1) Selection of the board/Microprocessor is mandatory
+2) Following Peripheral libraries are either mandatory or highly desirable
+   Must be selected from the Repository windows in CooCox IDE
+
+Mandatory :
+   CMSIS Boot -  The core libs for the board
+   RCC - The clock code and code related to the reset function of the board (initial bootstrapping)
+   GPIO - Most likely, application writes on a port pin, so this pulls the libraries required
+
+High Desirable:
+   Semihosting -  Make the communication with the CooCox IDE possible, via the USB port connected on the computer
+   C Libraries - Convinent printf function (C style)
+
+3) Modify the startup/startup_stm32FXXX.c
+    Uncomment the  SystemInit() function in the function prototypes section of the file
+
+ Right after the: 
+	extern int main(void);           /*!< The entry point for the application.    */ 
+ And before the:
+       void Default_Reset_Handler(void
+
+
+    In the Default_Reset_Handler(void)
+        Add a call to  SystemInit();
+  
+
+
+Good Web Site about minimal application:
+   http://patrickleyman.be/blog/stm32f407-tutorial-with-coocox/
+
+4) Facultative-  Make the  PrintChar(char c) function operationnal
+  
+  The function's body is there, but there is no code that send chars to the output console.
+
+  --> Add the call to SH_SendChar(c);
+
+void PrintChar(char c)
+{
+	/* Send a char like: 
+	   while(Transfer not completed);
+	   Transmit a char;
+	*/
+	SH_SendChar(c);
+}

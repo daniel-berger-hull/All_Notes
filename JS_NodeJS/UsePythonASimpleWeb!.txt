@@ -1,0 +1,4 @@
+One line simple web server!!!
+Even easier than creating an NodeJS-Express simple server!!
+
+-->  python -m SimpleHTTPServer 3000

@@ -1,0 +1,57 @@
+/*
+   There are 16 independent channels to produce a PWM, and you can assign any channel to any 
+   output pins (which is not the case with AVR microcontroller)
+   
+   You can also set the frequency of the output, up to 312.5 KHz (max I been able to get)
+
+  Core function:
+     
+         Assign Channel:
+         
+         		ledcAttachPin( GPIO Pin Number,  hannel Number);
+         		
+         		Use the Pin number as they are their declared GPIO
+         		i.e:  GPIO 23, which is also label 36 on some diagram, must use pin 23
+         Set up:
+                 ledcSetup(  channel Number, Frequency To Output, Width of the counter);
+                 
+                 i.e:   ledcSetup(1, 300000, 8); // 12 kHz PWM, 8-bit resolution
+          
+          Set output duty cycle:
+          
+          		ledcWrite( channel Number , Duty Cycle Value );  
+          		
+          		i.e:  ledcWrite(2, greenValue);   
+
+*/
+
+
+// Set up the rgb led names
+uint8_t ledR = 22;   //GPIO 22 - Thid from the top on the right side
+
+uint32_t redValue;
+
+// the setup routine runs once when you press reset:
+void setup() 
+{            
+  
+  ledcAttachPin(ledR, 1); // assign RGB led pins to channels
+  
+  // Initialize channels 
+  // channels 0-15, resolution 1-16 bits, freq limits depend on resolution
+  // ledcSetup(uint8_t channel, uint32_t freq, uint8_t resolution_bits);
+  ledcSetup(1, 12000, 8); // 12 kHz PWM, 8-bit resolution
+
+  redValue = 0;
+}
+
+// void loop runs over and over again
+void loop() 
+{  
+   for (color = 0; color < 255; color++) { 
+      ledcWrite(1, redValue); // write value to channel 1
+ 
+      if (++redValue >= 255)    redValue = 0;
+    }
+ 
+}

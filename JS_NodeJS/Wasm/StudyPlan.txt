@@ -1,0 +1,31 @@
+
+
+Check with series of Articles: https://www.tutorialspoint.com/webassembly/index.htm
+
+
+* Get a simpler boiler plate code to invoke the wasm files...
+  What Emscripten produce is was to big
+  
+  
+  Nov 12: this guys seems to have really what it takes
+  	Code: https://github.com/Nitij/WebAssembly-Calculator
+  	Video: https://www.youtube.com/watch?v=_pHgILVlx3c
+ 
+ 
+ * Evaluate the size of the wasm file vs C/C++ code
+   Check how big the .wasm is getting, as you add code...
+   (i.e: the simple hello.c is giving a 12Kb!)
+
+
+* Compare the execution speed WASM + Javascript
+  May have to use an high precision timer...
+  
+  
+
+* Functions params
+
+  Test various params types (float, int, string arrays) to function,
+  and also the same for the return (returns large arrays is interesting to know)
+  
+  
+  

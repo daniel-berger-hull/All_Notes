@@ -1,0 +1,11 @@
+Compile WASM Module:
+------------------------
+
+Note: Make sure you have run the \emscripten\emsdk\emsdk_env.bat before compiling WASM modules...
+
+
+
+emcc source.c -s WASM=1 -o destination.js   --> Will produce a .wasm and .js file
+emcc source.c -s WASM=1 -o destination.html   --> Will produce a .wasm , .js and the HTML file
+
+

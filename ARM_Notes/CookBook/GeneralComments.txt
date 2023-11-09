@@ -1,0 +1,51 @@
+A compilation of piece of code or driver file that works on 
+
+   * stm32f103C8T6(Small form factor board)
+   * STM32F303VCT6 Discovery Board
+   * STM32F406VG Discovery Board
+
+
+*** Standard Library vs HAL ***
+
+   The first STM32 projects been done using the early library, called STM32 Standard Peripheral Libraries.
+   Those projects and lib were used with Attolic Studio or CooCox.
+   
+   But ST Electronic published the Tool STMCube, with a new generation of library HAL.
+   Also Attolic is now part of STMCudeIDE, which is a combined Attolic IDE + STM Cube.
+   My Last project used HAL.
+   
+   
+
+
+
+Note on Programmation of the chip:
+==================================
+
+ STM32F103C8T6 Micro Board
+ ---------------------------
+
+ The stm32f103c8t6 will require the ST-Link 2 Adapter to be programmed via a USB port of the PC.
+ 4 wires required:
+
+
+   #1 -->  Input/Output   
+   #2 -->  Ground
+   #3 -->  Clock
+   #4 -->  3.3 V
+   
+ 
+ ST-Link 2 Connect view (When seeing the USB connector is away from you)
+
+    (No writing on the top)
+    +---------------+
+    | 1  2  3  4  5 |
+    | 6  7  8  9  A |
+    +---------------+
+  (Writing facing down)
+  
+  
+  STM32F303VCT6 & STM32F406VG Discovery Board
+  ---------------------------
+  
+    The discovery board already has an ST-Link 2 included in the board (accessible
+    via the USB connector)

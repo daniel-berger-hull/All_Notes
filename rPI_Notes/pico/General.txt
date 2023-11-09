@@ -1,0 +1,31 @@
+
+Create Basic C++ Project
+========================
+
+Here is a step by step procedure
+
+  https://www.arnabkumardas.com/platforms/rp2040/raspberry-pi-pico-create-and-build-new-project-in-windows-10/
+  
+Or you can 
+
+1 - Extracts the folders and files from the PicoProjectTemplate.rar archive (to skip all the folder and files creation steps )
+
+2 - Open a Visual Studio 2019 Developer Command Prompt
+
+    From the Windows search Textfield (bottom left of the screen, beside the Windows button)
+			Enter 'developer command prompt'
+
+   Note: You will need to use Visual Studio 2019 Developer Command Prompt AND NOT just a DOS prompt!!!
+
+3 -  Navigate to the build folder of the project extracted in step 1
+
+   i.e:  C:\data\Electronic\workspaces\rPI\pico\pico-empty-project\build
+   
+4 - Enter the cmake command 
+               cmake -G "NMake Makefiles" ..
+           
+               from within the build folder
+
+5 - run nmake
+
+ (Should give the .elf and .uf2 in the build\main folder)

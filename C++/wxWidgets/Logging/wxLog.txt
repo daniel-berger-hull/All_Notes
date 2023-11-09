@@ -1,0 +1,21 @@
+Details of the wxWidgets framework here:  https://docs.wxwidgets.org/3.0/overview_log.html
+
+
+Oct 26, 2023:
+=============
+
+  The wxLogStream (log to a file of your choice) work ok
+  
+  Requires:
+  
+	  wxLog* mStandardLog;
+  	  FILE* mLogfile;
+  	  
+  And the setup is:
+  
+   	 mLogfile = fopen("some.log", "w");
+  	 mStandardLog = new wxLogStderr(mLogfile);
+	 wxLog::SetActiveTarget(mStandardLog);
+ 
+ And then, logging with call to:
+ 	wxLogMessage("Hello world from wxWidgets!");

@@ -1,0 +1,22 @@
+This is the aspect where there are a need to complete some code example. Since there are many
+ST platform, it would rather be better to concenentrate only on the STM32F103 and STM32F404.
+
+ADC
+----
+
+  F4 Using Polling 
+  F4 Using Interupt 
+  F4 With DMA transfer 
+
+ --> The F103 has 3 types already
+
+DMA
+----
+
+  F4 - Mem to mem (one existing already for the F3)
+  
+ 
+GPIO
+----
+
+   F103 - A PWM (Check CooCox examples has a good one: TIM_PWMOutput.c)

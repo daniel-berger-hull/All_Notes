@@ -1,0 +1,75 @@
+
+===========
+- GENERAL -
+===========
+
+#1 Debug output
+
+  The macro TRACE can display to the Output console of Visual Studio
+
+    TRACE("Message To display\n");
+		OR
+    TRACE("Message To display with var  %d\n", varName);
+
+ Check here for more details
+ 
+  https://docs.microsoft.com/en-us/visualstudio/debugger/mfc-debugging-techniques?view=vs-2022#BKMK_The_TRACE_macro
+
+#2 Simple String
+
+ the MFC CString class can easily handle text and variable value inside a string 
+ CString m_TimerEcho.Format(_T("%d: Seconds have passed"), m_Seconds);
+
+
+
+#3 Data Exchange (DDX mechanism)
+
+ MFC has a data exchange process between the control on screen and either
+      A) Their associated - Control Instance - 
+        i.e   A List Box on screen  <-->  CListBox m_listBox   (inside the dialog class normally)
+      	
+      B) Their associated - Control Variable -
+      
+        i.e   A static label on screen <->  CString labelText
+        
+ MFC manages the transfer for you in the method:
+ 
+ A) void YourDialogClass::DoDataExchange(CDataExchange* pDX)
+ 
+ 
+ And in the DoDataExchange method, the following DDX method must be called to maintain the 
+ data integrity between the Screen's control and its control variable/Instance
+
+	For Control Instance:
+ 		DDX_Control(pDX, RES_ID_CONTROL_IN_DIALOG, m_InstanceName);
+ 
+ 	For Control Variables:
+ 	
+ 		DDX_Text(pDX, RES_ID_CONTROL_IN_DIALOG, m_StringControlVariableName);          (if CString)
+        	DDX_Check(pDX, RES_ID_CHECKBOX_CONTROL_IN_DIALOG, m_BoolControlVariableName);   (if Bool)
+   
+ B) Needed for update
+ 
+   Next important thing is the method UpdateData(BOOL) to be called EVERYTIME something is changed 
+   by the user in the GUI
+   
+   	UpdateData(FALSE)
+   	
+   Note: TRUE and FALSE appears to control the direction of the update 
+        (i.e: From screen to Control Variable
+             Or from Contrla VAriable to Control on the screen)
+         Experiment!
+   
+
+Working with Strings
+====================
+
+   MFC String Wrapper:   CString
+   
+   
+   Simple value assigement:  
+   	CString m_VarName
+   	m_VarName.Format( _T("Simple Message") );
+   	m_VarName.Format(_T("Message, the value is %d"), value);
+   
+   

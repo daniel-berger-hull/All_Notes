@@ -1,0 +1,165 @@
+
+
+
+
+=================
+- MFC Threading -
+=================
+
+
+#1 Simplest Way: Running a function with 'AfxBeginThread'
+----------------------------------------------------------
+   (Note: This is called a Worker in Microsoft documentation)
+   
+The function AfxBeginThread takes 2 params (one a method to run and two param class)
+
+UINT MyThreadProc( LPVOID pParam )
+{
+    CMyObject* pObject = (CMyObject*)pParam;
+
+    if (pObject == NULL ||
+        !pObject->IsKindOf(RUNTIME_CLASS(CMyObject)))
+    return 1;   // if pObject is not valid
+
+    return 0;   // thread completed successfully
+}
+
+// inside a different function in the program
+.
+.
+.
+pNewObject = new CMyObject;
+AfxBeginThread(MyThreadProc, pNewObject);
+
+See this article for more explanation: https://docs.microsoft.com/en-us/cpp/parallel/multithreading-creating-worker-threads?view=msvc-170
+
+
+#2 Run A worker Thread from a class method
+------------------------------------------
+
+  This is the same principe than #1, but instead of using a non-Object method, it can be more convenient to use the method of a class.
+  That way, the method runned by the thread can access all the inner fields of the hosting class.
+  *** But there is important steps to follow ***  
+  
+  1 - The method MUST by static
+
+	Here an example of a method to be used by the Thread (here, the name run() can be anything you want)
+	
+	Note: Important You will pass a pointer to the class itself in the parameter of the static method (see why in step 2)
+	
+	
+
+	
+     --> The AfxBeginThread must invoked on the static method 
+
+   
+   
+   2 - Create a support non static method
+   
+     You can't access the variables of a class from a static method, 
+     so create another method
+     
+     
+     Header file:
+     
+      void runThread()
+     
+   
+   
+   Here is the code:
+    
+    
+   Header File
+   ----------
+     
+     class CMainDlg : public CDialogEx
+     {
+     	...
+     	private:
+     		static UINT run(LPVOID p);
+     		void runThread();	// This is the support method for the run method
+     }
+     
+     CPP File:
+     --------
+     
+     UINT CMainDlg::run(LPVOID p)
+     	{
+     			
+     		TRACE(" CListSizeDraw::run(LPVOID p) static version...\n");
+     		CMainDlg* me = (CMainDlg*)p;
+     		me->runThread();
+     	
+     		return 0;
+	}	
+     
+      void CMainDlg::runThread()
+          {
+          
+          
+     	TRACE(" CListSizeDraw::runThread() started..\n");
+     }
+     
+     And then you can invoke the tread on the static method anywhere you want...
+     
+     void CMainDlg::PreSubclassWindow()
+     {
+     	
+     	
+     	// Will start the thread and run the static method run() 
+     	AfxBeginThread(run, this);
+   }
+
+#3 Inherit the CWinThread class for more control
+-------------------------------------------------
+
+ Here, you can overide many functions of the CWinThread class, like InitInstance,Run, ExitInstance
+ That is what is called a GUI Thread in the MFC articles and documentation
+ 
+ So, first, create your own version of CWinThread
+ Two, start the thread with AfxBeginThread ('version #2')
+ 
+ 
+    AfxBeginThread(RUNTIME_CLASS(YourThreadClassName));
+ 
+  See here for more details: https://docs.microsoft.com/en-us/cpp/mfc/reference/cwinthread-class?view=msvc-170#run		     
+		     
+		 
+
+#4 Message Parent To/From Thread
+--------------------------------
+
+User the 
+	m_threadHandle->PostThreadMessage(WM_YOUR_MSG_ID, 10, 0);
+
+
+#5 Synchro - CCriticalSection
+-----------------------------
+
+The simplest and fastest option to handle data concurency with MFC is a CCriticalSection
+Its use is something like the following:
+
+CCriticalSection c_s;
+int g_C;
+
+
+UINT ThreadFunction1(LPVOID lParam)
+{
+    // Create object for Single Lock
+    CSingleLock lock(&c_s);
+
+    lock.Lock();
+
+    // To the work on the critical data here!!!
+
+   
+    lock.Unlock();
+}
+Here is an article that explain the CCriticalSection and other MFC synchro classes:
+https://www.codeproject.com/Articles/7953/Thread-Synchronization-for-Beginners
+
+There is also a project called ThreadsSync on the folder:
+
+D:\data\workspace\C++\MFC\ThreadTests\ThreadsSync
+(The project is complete, because it has 2 differents threads, plus a dynamic controls using itself a thread that
+ display the results of the worker threads. And a CCriticalSection is used to keep the data in sync)

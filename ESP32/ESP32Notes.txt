@@ -1,0 +1,37 @@
+
+
+ESP-IDF
+-------
+
+I'm goint to use the Arduino framework for a while, because jumping tothe Espressif IDF is going to require a lot of commitement.
+But the SDK on which Arduino appears to be build it here:
+
+	C:\Users\dan\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\cores\esp32
+
+
+SPIFFS
+------
+
+The ESP32 also has a support for the SPI File System (a small file system specific for the microcontroller having a flash)
+
+Any file to be accessed by the microcontroller have to be updated in the Flash memory first,
+so here is a good site that describe the process
+https://randomnerdtutorials.com/install-esp32-filesystem-uploader-arduino-ide/
+
+
+Using Visual Studio Code with ESP32
+-------------------------------------
+
+
+Make sure that the following setting is done to have IntelliJ working and be able to compile from within VSC 
+
+Environment Variables
+---------------------
+
+*** Compiler path ***
+D:\data\Electronic\ESP32IDF\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-gcc.exe
+
+Used to be : C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe before, for the C++ applications
+
+*** Include path ***:
+${env:IDF_PATH}/components/**

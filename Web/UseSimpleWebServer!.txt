@@ -1,0 +1,22 @@
+One line simple web server!!!
+
+
+
+Option #1: npm http-server
+--------------------------
+
+ Install one one time with command:       npm install --global http-server 
+ And then run with command:               http-server 
+   						or
+ 					  http-server [path] [options]
+ 
+ 					See this page for details: https://www.npmjs.com/package/http-server
+ 
+ If Will serve any static pages present in the current folder (where start the http-server)
+ 
+Option #2: python server
+------------------------ 
+
+  Even easier than creating an NodeJS-Express simple server!!
+
+-->  python -m SimpleHTTPServer 3000

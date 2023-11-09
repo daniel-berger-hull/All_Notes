@@ -1,0 +1,6 @@
+Flash tool at:
+C:\Users\dan\AppData\Local\Arduino15\packages\esp8266\tools\esptool\0.4.9\esptool.exe
+
+Command line:
+esptool.exe -vv -cd nodemcu -cb 115200 -cp COM7 -ca 0x00000 -cf gpio.bin 
+

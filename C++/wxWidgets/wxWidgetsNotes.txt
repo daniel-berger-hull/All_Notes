@@ -1,0 +1,84 @@
+
+
+Great Start Here: https://www.wxishiko.com/wxWidgetsTutorials/index.html
+Or this one:  https://zetcode.com/gui/wxwidgets/
+
+GENERAL
+=======
+ 
+ 
+Build & Configure WxWidgets
+---------------
+
+ 1 - Extract the zip file from the  WxWidgets web site
+ 
+    https://www.wxwidgets.org/downloads/#v3.1.7_msw
+    
+ 2 - open the MS Visual Studio solution at:
+ 
+ 		<wxWidgets_folder>\build\msw\wx_vc15.sln
+ 		
+ 3 - From the menu Build, select Batch Build...
+ 
+ 4 - Click on button Select All
+ 
+ 5 - Click on button Build
+ 
+   (should take 10-20 minutes)
+   
+
+ 6 - Create an Windows Environment variable *** WXWIN *** pointing to the root of the wxWdigets installation
+
+	i.e:  WXWIN --> C:\data\Programming\libs\wxWidgets3.1.1
+
+Create a project:
+------------------
+
+Few methods are availables...
+
+Here is this one from the video (https://www.youtube.com/watch?v=FOIbK4bJKS8&t=1064s)
+
+
+
+  1 - Restart Visual Studio!!!
+     (so that it pick up the WXWIN variable set in set #6 of the previous section)
+     
+  2 - Create a Windows Desktop Application (Win32)
+  
+  3 - Remove all files in 
+        Header Folder
+        Resource Folder
+        Source Folder
+      
+      (There is nothing really left from the Win32 project once the delete is done)
+  
+  4 - Right click on the project and select Property
+  
+  5 - Make sure that in the Configuration combo (Top Left corner), 'All Configurations' is selected
+  
+  6 - In the C/C++ \ Percompiled Headers, select option (Not using Precompiled Headers)
+  
+  7 - In the C/C++ \ General, Click on the line Additionnal Include Directories (First one) and add:
+     
+          	$(WXWIN)\include; $(WXWIN)\include\msvc;
+          	
+   8 - In the C/C++ \ General, Click on the line Additionnal Include Directories (First one) and add: 
+        Linker --> Additionnal Library Directories
+     		$(WXWIN)\lib\vc_lib;   (There are libs, like 64 bits also here)
+     		
+   9 - Add a cpp source file (can be Main.cpp)
+   
+   10 - Copy paste the hello world example from: 
+   
+     https://docs.wxwidgets.org/3.0/overview_helloworld.html
+ 
+ 
+ THREADS
+ ========
+ 
+ 
+ CONTROLS
+ ========
+ 
+ 
+ 

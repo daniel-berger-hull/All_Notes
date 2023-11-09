@@ -1,0 +1,5 @@
+Patrick Hood-Daniel made a fantastic series of videos (60) on the STM32 
+	
+	https://www.youtube.com/watch?v=R6SstBoXjKc&list=PL6PplMTH29SHgRPDufZhfMRoFwRAIrzOp&index=1
+   He use a straight access to the microcontroller registers (Not even the standard library).
+   But it is very good to understand what is going on...

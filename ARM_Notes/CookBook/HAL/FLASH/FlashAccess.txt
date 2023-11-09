@@ -1,0 +1,30 @@
+
+
+
+Read:
+
+Coding:
+
+
+/**   environment variable are only convienient, and not mandatory ***/
+#define ADDR_FLASH_PAGE_128    ((uint32_t)0x0803F800) /* Base @ of Page 128, 2 Kbytes */
+
+#define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_128   /* Start @ of user Flash area */
+#define FLASH_USER_END_ADDR     ADDR_FLASH_PAGE_128 + FLASH_PAGE_SIZE   /* End @ of user Flash area */
+
+
+UART_HandleTypeDef huart2;
+
+uint32_t flashAddress = 0;
+__IO uint32_t data32 = 0;
+
+
+  flashAddress = FLASH_USER_START_ADDR;
+  data32 = *(__IO uint32_t *)flashAddress;
+
+   //Move to the next available 32 bits memory...
+   flashAddress = flashAddress + 4;
+
+
+See the following Web Site:
+	https://github.com/weifengdq/STM32#flash

@@ -1,0 +1,37 @@
+
+1 - Make sure to configure UART1 or  UART2 in STMCude, and notice the Pins assigned...
+
+2 - Add the following in the main.c of your project
+
+
+int __io_putchar(int ch)
+{
+   // Make sure to match the UART_HandleTypeDef variable produced by STM Cube . here --> 'huart2'
+   HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF); 
+   return(ch);
+}
+
+
+Here is a guide used (AN4989 - STM32 microcontroller debug toolbox)
+https://www.st.com/resource/en/application_note/dm00354244-stm32-microcontroller-debug-toolbox-stmicroelectronics.pdf
+
+
+
+  uint16_t raw;
+  char msg[20];
+  
+  while (1)
+
+
+    // Read ADC value on pin PA0
+  	    HAL_ADC_Start(&hadc1);
+  	    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+  	    raw = HAL_ADC_GetValue(&hadc1);
+  
+  
+  
+  	  sprintf (msg, "value of PA1 %d\r\n", raw);
+  
+  	  printf( msg );
+  	  HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_8 );
+	  HAL_Delay(1000);

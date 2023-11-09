@@ -1,0 +1,39 @@
+*******************************************************************************************************************
+ Web workers offer a way to do multithreading in an HTML/Javasacript page.
+ 
+ 
+ Details Here: https://medium.com/techtrument/multithreading-javascript-46156179cf9a
+ 
+ *******************************************************************************************************************
+ 
+ Steps:
+ 
+ 1 - Declare an instance of 'Worker', 
+     Giving a parameter a Javascript file to run
+ 
+ 2 - Add an event lister for the message FROM the worker (inside the main HTML)
+ 
+ 3 - post message to Worker
+ 
+ Examples
+ 
+ (File index.html)
+ <script> 
+         var worker = new Worker('worker.js');
+  
+         worker.addEventListener('message', function(e) {
+             console.log(e.data);
+         });
+         
+         worker.postMessage('Happy Birthday');
+    </script>
+    
+ (File worker.js)
+  self.addEventListener('message', function(e) {
+ 
+     console.log("Web Worker received message: " + e.data );
+     // self.postMessage("Message From Web Worker to the main caller");		
+     // self.close();
+     postMessage("Message From Web Worker to the main caller");
+     close();
+  });

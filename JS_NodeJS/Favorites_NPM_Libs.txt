@@ -1,0 +1,29 @@
+
+
+*** TEXT AND OTHERS  ***
+
+colorette
+=========
+
+  Draw text in color (lighter version of chalk)
+ 
+     install:  npm install colorette
+  
+
+ chalk
+ ======
+ 
+    Classic version for the text coloring...
+    
+    
+     install:  npm install chalk
+     
+ 
+ 
+ *** NETWORK AND WEB ***
+ 
+ 
+ Axios
+ =====
+ 
+   This is a must and a very used HTTP Client library

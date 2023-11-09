@@ -1,0 +1,29 @@
+
+static int taskCoreOne = 1;
+
+
+void genericTask( void * parameter )
+{
+ 
+     printf("Method %s is running on core %d\n", "genericTask" , xPortGetCoreID());
+    for( int i = 0;i<10;i++ ){
+ 
+        //printf("TaskOne Tick\n");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+    }
+ 
+    printf("genericTask Ending task 1\n");
+    vTaskDelete( NULL );
+}
+
+void app_main()
+{
+  xTaskCreatePinnedToCore(
+                    genericTask,   /* Function to implement the task */
+                    "genericTask", /* Name of the task */
+                    10000,      /* Stack size in words */
+                    NULL,       /* Task input parameter */
+                    0,          /* Priority of the task */
+                    NULL,       /* Task handle. */
+                    taskCoreOne);  /* Core #1 is going to be used for the task */
+ }

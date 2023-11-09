@@ -1,0 +1,17 @@
+From the output of the Arduino IDE, when programming the ATMega2560 board, the following synthax
+been infererred:
+
+    avrdude -Cavrdude.conf -v -patmega2560 -cwiring -PCOM10 -b115200 -D -Uflash:w:main.hex:i 
+    
+Note 1: The Avrdude from the Arduino IDE folder
+		C:\Program Files (x86)\Arduino\hardware\tools\avr/bin
+	will work, while the one from WinAVR at  C:\WinAVR-20100110\bin will FAIL!
+
+	ADD This arduino in your Window's PATH environment variable...
+	
+Note 2: The 'wiring' programmer and the 'atmega2560' MCU requires a local copy of the Arduino  avrdude.conf file.
+        It can be found at the location:
+        
+        C:\Program Files (x86)\Arduino\hardware\tools\avr/bin/avrdude -CC:\Program Files (x86)\Arduino\hardware\tools\avr/etc/
+        
+        

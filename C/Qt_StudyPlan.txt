@@ -1,0 +1,28 @@
+
+QMenu
+
+QDataView
+
+QTreeView
+
+
+
+
+======================================================================================================
+
+
+
+ 
+std::thread  vs QThread,   
+Messages to Thread via Slots and Signals
+QMutex
+
+     July 1 --> Calculator project (The name is really not representative)
+
+                this projects has quite a lot of tests packed, but this gives a great idea of what a producer/consumer
+                pair of Threads can do.
+                And is  used a QThread to update a progress bar...
+                
+QThreadPool & QRunnable
+
+   July 15 -->   ThreadPool project

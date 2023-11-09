@@ -1,0 +1,156 @@
+JSON Library for C++
+====================
+
+Take from the following github repository:
+  https://github.com/nlohmann/json#supported-compilers
+  
+Currently installed on danpc at:  
+   D:\data\Programming\C++\json\json
+
+
+ 
+
+  
+1 - Simple JSON File Parsing
+----------------------------
+
+    
+   #include <fstream>		  // For reading the files...
+   #include <nlohmann/json.hpp>   //The library itself
+   
+   using json = nlohmann::json;    //to avoid to rewrite the nlohmann namespace at every use of json class
+   
+   
+   ifstream jsonStream("<YourJSONFile>");
+   if (!jsonStream.is_open())
+  	return -1;   //Failed to open the json file... 
+   
+   
+   json data = json::parse(jsonStream); 	 // Parsing is here...
+   
+   // Basic query on few variables written in the JSON file..
+   string name =   data["name"].get<std::string>();
+   int age = data["age"].get<int>();
+   float height = data["height"].get<float>();
+
+ and the example JSON file is:
+ 
+	 {
+		"name":"John", 
+		"age":30, 
+		"height": 10.5,
+	 }  
+
+2 - Parsing an array 
+---------------------
+
+    #include <fstream>		  // For reading the files...
+    #include <nlohmann/json.hpp>   //The library itself
+     
+    using json = nlohmann::json;    //to avoid to rewrite the nlohmann namespace at every use of json class
+   
+    ifstream jsonStream("<YourJSONFile>");
+    if (!jsonStream.is_open())
+    	return -1;   //Failed to open the json file... 
+      
+      
+   json data = json::parse(jsonStream); 	 // Parsing is here...
+   
+   int sizeOfArray = data["position"].size();    // Facultative, but handy to have the size of the array...
+ 
+   // Will iterate through all the values of the array  "position"
+   for (auto& elem : data["coords"])
+   {
+   	float val = elem;
+   }
+   
+   And the JSON File for the example is (only one item):
+   
+   {
+   	"coords": [1.0, 2.5, 3.0]
+   }  
+
+3A - Parsing an Object
+----------------------
+
+   To pull an object from a JSON file, you need to define a struct in your cpp code,
+   and use the get method of the nlohmann::json class
+   
+   #include <fstream>		  // For reading the files...
+   #include <nlohmann/json.hpp>   //The library itself
+      
+     using json = nlohmann::json;    //to avoid to rewrite the nlohmann namespace at every use of json class
+     
+     // You must define structs who are matching the JSON objects in the file...
+     struct Point3D {
+     	float x;
+     	float y;
+     	float z;
+     };
+    
+     ifstream jsonStream("<YourJSONFile>");
+     if (!jsonStream.is_open())
+     	return -1;   //Failed to open the json file... 
+     	
+     // Note: This way is a bit akward, as you serialize the struct object,
+     //       to reparse it using the nlohmann::json::parse
+     //       There should be a better way 
+     string pointObjectData = data["position"].dump();
+     json pointData = json::parse(pointObjectData);
+     // The sub-fields of the struct are now available, using the [ ] operator...
+     float x = pointData["x"];
+     float y = pointData["y"];
+     float z = pointData["z"];
+      
+
+
+JSON File with the object is:
+
+{
+  "position": {
+ 	   "x": 2.5,
+ 	   "y": 0.5,
+ 	   "z": -3.5
+  }
+}
+
+
+3B - Parsing an Array of Object
+----------------------
+
+   Like 3A, make sure to define a struct, and iterate through the array
+   
+   #include <fstream>		  // For reading the files...
+   #include <nlohmann/json.hpp>   //The library itself
+      
+     using json = nlohmann::json;    //to avoid to rewrite the nlohmann namespace at every use of json class
+     
+     // You must define structs who are matching the JSON objects in the file...
+     struct Point3D {
+     	float x;
+     	float y;
+     	float z;
+     };
+    
+     ifstream jsonStream("<YourJSONFile>");
+     if (!jsonStream.is_open())
+     	return -1;   //Failed to open the json file... 
+
+      std::vector<std::string> vertexes;
+      for (auto& elem : data["vertex"])
+      {
+ 	float x = elem["x"];
+	float y = elem["y"];
+	float z = elem["z"];
+      }
+
+The JSON file with the array of object being:
+
+{	
+ "vertex" : [
+      {  "x":  2.5, "y":  0.5, "z": -3.5 },
+      {  "x": -0.7, "y": -4.5, "z": -3.5 },
+      {  "x":  7.2, "y":  0.5, "z": -3.5 },
+      {  "x":  7.2, "y":  0.5, "z": -3.5 }
+    ]
+}

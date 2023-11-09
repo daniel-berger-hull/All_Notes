@@ -1,0 +1,43 @@
+
+Include Javascript Modules
+==========================
+
+Include Modules of JavaScript in an HTML page appears to be more challenging, than
+doing the same in a simple NodeJS project. Here are few steps
+
+
+1 - Use 'import' Statement in HTML page.
+
+  
+  Include the Javascript file straight into the HTML page like:
+  
+   	 <script src="myScript.js"></script> 
+  
+  appears to give complications, when the js file is served as static file in Express.JS
+  (Like   -->  app.use(express.static('public'));   // First version)
+  
+  
+  Solution:
+  ---------
+  
+  i) Use a "module" type and use the 'import' keyword to pull you javascript file
+  
+	   <script type="module">
+		  import {sayHi } from './sayHi.js';
+
+		  document.getElementById("targetControl").innerHTML = sayHi('John');
+	  </script>
+  
+   ii) then, use  the 'export' keyword in your javascript file:
+   
+    (sayHi.js file)
+     ...
+     export function sayHi(user) {
+       return `Hello, ${user}!`;
+     }
+
+   NOTE: The NodeJS synthax, like *** module.exports.x = something *** do not appear to work with
+         straight HTML+Javascript
+    
+    
+   See Web Site:  https://javascript.info/modules-intro for more details

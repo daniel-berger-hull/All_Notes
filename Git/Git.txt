@@ -1,0 +1,78 @@
+
+A great web site with simple list and explanations: 
+  https://frontend.turing.edu/lessons/module-1/git-commands.html
+
+Another with more text:  https://www.nobledesktop.com/learn/git/git-branches
+
+Pull remote code to local machine
+================================
+
+1  git clone https://git-codecommit.ca-central-1.amazonaws.com/v1/repos/<YourRepoName>
+ (cd <YourRepoName> folder)
+
+3. git checkout development
+
+4. git pull 
+
+Additionally
+
+5.  git checkout –B  ‘can give jira ticket number ex. PIM 311 ‘
+6.  git push --set -upstream origin ‘PIM 311’
+
+Step 5 and 6 are optional.
+
+
+
+ To commit Changes:
+ ==================
+
+  1 - git status (Facultative)
+    --> Should tell you that there are changes ready to be commited
+
+  2 - git add .git 
+     Mark all the files to be commited
+ 
+  3 - git commit -m "write commit message here"
+      Commit all the change (on your local git copy)
+
+  4 - git push
+      Finally, send the changes to the remove git repository
+
+
+
+ Discard all local changes:
+ ==========================
+
+  To remove all your changes, and go back to the orignial content
+  (like it is on the remove branch)
+
+   git reset –-hard        (That one apears to do most of the work)
+   git clean -fxd
+
+
+
+Create a new remote repository 
+=================================
+
+git init
+<Add a new file called README.md>
+git add README.md
+git commit -m "Adding the first file on the git-test repo"
+git branch -M main
+git remote add origin https://github.com/daniel-berger-hull/git-test.git
+git push -u origin main
+
+Note: This one appears to work only if you have an existing remove repo on GitHub (i.e git-test)
+      (Oct 2023)Confirming again that the remote repository MUST be created before git push
+
+Note 2:  The following push command appears to work also 
+            git push --set-upstream origin master
+        (-u is the short version of --set-upstream) 
+        
+        
+Push an existing repository
+===========================
+
+git remote add origin https://github.com/daniel-berger-hull/git-test.git
+git branch -M main
+git push -u origin main

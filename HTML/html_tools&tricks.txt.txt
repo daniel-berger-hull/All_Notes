@@ -1,0 +1,21 @@
+
+
+Delayed image (long loading time)
+=================================
+
+  The web site offer image that are very long to load, and you can test
+  how your HTML & JavaScript code react to it
+
+	https://en.js.cx/clipart/train.gif?speed=1&cache=0
+
+  Note: Any other speed than 1 will be loaded immediately...
+  
+  
+    Example:     <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    
+    
+
+Super great text and 3D Text producer
+======================================
+    
+    https://www.textstudio.com/

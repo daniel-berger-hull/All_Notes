@@ -1,0 +1,36 @@
+Print to Console
+=================
+
+  A Win32 can't print to the console, as it is a non Console type of application. So all the printf or cout
+  will do nothing.
+  
+  A really great hint here about that:
+  https://stackoverflow.com/questions/1333527/how-do-i-print-to-the-debug-output-window-in-a-win32-app
+  
+  Steps:
+  
+  1 - Add a main function to your main class of the Win32 project 
+  
+  // Main function for the console
+  int main(){
+  
+      // Calling the wWinMain function to start the GUI program
+      // Parameters:
+      // GetModuleHandle(NULL) - To get a handle to the current instance
+      // NULL - Previous instance is not needed
+      // NULL - Command line parameters are not needed
+      // 1 - To show the window normally
+      wWinMain(GetModuleHandle(NULL), NULL,NULL, 1); 
+  
+      system("pause");
+      return 0;
+}
+
+ 2 -  Change Linker setting
+
+ In Project -> Properties -> Linker -> System -> Subsystem
+
+    select "Console (/SUBSYSTEM:CONSOLE)" from the drop-down list  (instread of "SUBSYSTEM:WINDOWS")
+    
+ 
+ 3 - Add printf or cout in your Win32 project

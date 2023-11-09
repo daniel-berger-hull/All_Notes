@@ -1,0 +1,20 @@
+WebGL Study Plan
+----------------
+
+WebGL2 How It Works: https://webgl2fundamentals.org/webgl/lessons/webgl-how-it-works.html
+WebGL2 Fundamentals: https://webgl2fundamentals.org/webgl/lessons/webgl-fundamentals.html
+WebGL2 Shaders and GLSL: https://webgl2fundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
+
+Lighthouse3d.com Course:  http://www.lighthouse3d.com/tutorials/glsl-tutorial/
+
+Good Site where WebGL, Three.js and Math: https://acko.net/blog/a-dom-for-robots/
+
+
+Great Three.js examples!: https://threejs.org/examples/#webgl_animation_keyframes
+--------------------------------------------------------------------------
+
+Few good and simple examples here:  D:\data\workspace\JavaScript\WebGL\IndigoCS-webgl-tutorials
+
+
+Explore the following examples : D:\data\workspace\JavaScriptGraphics\WebGL\unconned_examples\shadergraph
+  As there seems to have shaders a bit more advanced than an HelloWord...

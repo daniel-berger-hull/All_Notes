@@ -1,0 +1,5 @@
+nmap is a command line tool for port scanning and few other functions for a remote host analysis
+
+Following is a good sheet sheet of the command line option of nmap.
+
+https://www.stationx.net/nmap-cheat-sheet/

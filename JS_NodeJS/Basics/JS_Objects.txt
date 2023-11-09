@@ -1,0 +1,16 @@
+
+List and Display all Fields of an object
+========================================
+
+    showProps(obj, objName) {
+        let result = '';
+        for (const i in obj) {
+          // obj.hasOwn is used to exclude properties from the object's prototype chain and only show "own properties"
+          if (Object.hasOwn(obj, i)) {
+            result += `${objName}.${i} = ${obj[i]}\n`;
+            console.log('In loop!');
+          }
+        }
+        console.log('Showing Props\n');
+        console.log( result);
+      }

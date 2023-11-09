@@ -1,0 +1,21 @@
+
+Cover all the general topics of Win32 programming:
+	D:\data\OneDrive\eBooks\Programming\Win32\Programming Windows.pdf
+
+Study of the internals of Windows:
+	D:\data\OneDrive\eBooks\Programming\Win32\Windows System Programming (4th Edition).pdf
+	
+Windows Ribbons: a Much more user friendly bars, of all super modern Windows Desktop application
+
+
+Here is a place with few advanced Win32 Control (hard to find documentation)
+* Coolbar, TrayIcon (run inside), 
+http://www.pld.ttu.ee/prog/win32/source.html
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Done 2018 - Enabling Styles (New look and feel of Windows Control)
+https://docs.microsoft.com/en-gb/windows/desktop/Controls/cookbook-overview
+
+	

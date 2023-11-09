@@ -1,0 +1,12 @@
+STM Studio
+===========
+
+It is a debug tool (don't confuse with STM32 Cube IDE) that can be run in parallel, with STM32 Cube IDE or any IDE.
+
+Each Comp
+the STM32 Cube IDE produce .elf project, which contains variables tags. 
+
+You need to import an elf file, and STM Studio will recognize all the tags. 
+
+Here is a video about how to use it:
+	https://www.youtube.com/watch?v=UzvIXeRCZw0

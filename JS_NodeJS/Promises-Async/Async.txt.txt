@@ -1,0 +1,74 @@
+
+See this good site: https://www.w3schools.com/js/js_async.asp
+
+But this one if even better, as sequencial or parrallel calls are explained also:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+Simple function and caller
+==========================
+
+// The function MUST be declared with async keyword...
+async function myAsyncFunction() {
+    console.log("myFunction2 invoked, calculate the prime numbers...");
+
+        for (let k=1;k<10000000;k++) {
+            primes.push(...primeNumber(k));
+        }
+        console.log("myFunction2 has completed and found the prime numbers!");
+
+    return "Hello2";
+  }
+
+
+
+// The await keyword is used to stop the execution BUT
+// the await MUST be used INSIDE an async function!
+// You will have an error otherwise!
+async function main() {
+  console.log("Will invoke the myFunction2() with an await...");
+  let result = await  myAsyncFunction();
+  console.log("\nThe result is " + result );
+}
+
+// Finally, you must start execution by calling your master async function
+// (where the await keyword are used)
+main();
+
+Promise version
+===============
+
+// First, you must create a subclass of the Promise, where
+// all you asynchronuse code should be...
+let  calculationPromise = new Promise(
+    function (calculationSuccess, calculationFailed) {
+
+       
+        for (let k=1;k<10000000;k++) {
+
+            primes.push(...primeNumber(k));
+          
+        }
+
+        calculationSuccess();
+    }
+);
+
+// You must define a method to be called after the Promise is fullfill and successfull
+const myCallbackfunction = () => {
+  console.log("display results: Number of prime found is " + primes.length); 
+}
+
+// You can also define an error method, in case the Promise is failing (Optional)..
+const errorHandler = () => {
+  console.log("Error occured !!!");   
+}
+
+Note Feb 2023: I'm not sure if what I wrote just below is true.. (Need to be double checked)
+// The invokation is here, and the promise is used pretty much like a regular method,
+// aside the fact that it is followed by .then() and .catch()
+calculationPromise
+   .then(  
+    
+        function (value) {  myCallbackfunction(); }, 
+        function (error) {  errorHandler(); }
+     );

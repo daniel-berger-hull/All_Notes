@@ -1,0 +1,37 @@
+
+emcmdprompt.bat:
+  Important --> To set up a DOS command line, with all required path and other config to work with the Emscripten 
+  Start you working session by double clicking on this batch file!
+  
+em++ 
+  The compiler of EmScripten
+  
+  
+
+Examples of compilations:
+emcc demo.c -s WASM=1 -s EXPORTED_FUNCTIONS="['_getNum','_main']"  -s DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$ccall -o ..\public\demo.js
+emcc prime.c -s WASM=1 -s EXPORTED_FUNCTIONS="['_isPrime']" ..\public\prime.js
+
+
+  
+------------------------------------------------
+
+
+2022-10-30:
+ Been able to compile the hello_world.cpp from the \emsdk\upstream\emscripten\test folder...
+ And to make sure, Copied the cpp file into another test folder:
+ 
+    D:\data\Programming\JavaScript\WebAssembly\emscripten\emsdk\upstream\emscripten\test
+    
+    
+ Simplify the Calling Javascript file
+ ------------------------------------
+   the .js file produced by EmScripten is very big (a.out.js is 67Kb!!!)
+   This guys here extract core param and variable from the a.out.js
+   and the end result is much smaller...
+     --> https://www.youtube.com/watch?v=_pHgILVlx3c
+ 
+ 
+ Links:
+ 
+ Loading and running WebAssembly code:  https://developer.mozilla.org/en-US/docs/WebAssembly/Loading_and_running

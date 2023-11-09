@@ -1,0 +1,9 @@
+
+IO Libraries
+-------------
+
+  The WiringPI appears to be the most commonly used, but here is an alternative to
+  explore:
+	http://www.raspberry-projects.com/pi/programming-in-c/io-pins/bcm2835-by-mike-mccauley
+
+ 

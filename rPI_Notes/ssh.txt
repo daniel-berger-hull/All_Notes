@@ -1,0 +1,21 @@
+
+
+Remote Transfer:
+----------------
+
+*** Command pscp.exe must be used (and not the ssh tool) ***
+
+
+From Remote (rPI) to Local (PC):
+
+	     pscp <remote-user>@<remote-machine>:<remote-path-to-file> <local-destination>
+
+	i.e: pscp pi@192.168.1.112:/home/pi/camera/image.jpg  image.jpg
+
+
+From Local (PC) to Remote (rPI) :
+
+	     pscp  <local-destination> <remote-user>@<remote-machine>:<remote-path-to-file>
+
+	i.e: pscp image.jpg pi@192.168.1.112:/home/pi/camera/image.jpg  
+

@@ -1,0 +1,11 @@
+* Unroll:  a matrix into column matrix
+   ex: A(:) , if A is 3x3, it gives 9x1 vector
+   
+* Reshape: change the dimension of an existing matrix 
+  ex: if A is a 6x3 matrix  
+      reshape (A(:), 3,6) --> A is now a 3x6 matrix
+
+      Note: you need to 'unroll' the source matrix before reshaping
+      
+      
+      

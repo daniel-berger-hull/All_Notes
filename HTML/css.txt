@@ -1,0 +1,17 @@
+Office 2010 Ribbons
+====================
+
+Super nice and exaclty identic Office 2010 ribbons in css/js/html
+
+	https://github.com/OkGoDoIt/Office-Ribbon-2010
+	
+	Try it here:  http://okgodoit.com/ribbon/
+
+
+CSS Clip-path
+=============
+
+the clip-path tool of css mask certain areas of a <div>, and can be pushed to even draw
+things very complex (like an animal head, see clip-path-example.png for example)
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path

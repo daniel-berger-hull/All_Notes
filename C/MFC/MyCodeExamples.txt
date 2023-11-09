@@ -1,0 +1,16 @@
+Here is a collection of some code example 
+
+CustomControl
+-------------
+
+Example of a Custom Control, which is a control from the Visual Studio's control toolbox.
+This is a good and light weight alternative to a full ActiveX/OCX projects (with limitation of course)
+
+
+From:  https://www.codeproject.com/Articles/5032/Creating-and-Using-custom-controls-in-VC
+
+
+Thread
+------
+
+The Thread folder contains few basic code example of how to create and use MFC Threads

@@ -1,0 +1,78 @@
+
+Extending HTML with customs tags
+=================================
+
+It is possible to create your own HTML tag using following steps:
+
+1 - Create Javascript Class in a Javascript file **1: The class must extend HTMLElement
+  
+2 - Add Render method to HTML tag: The class (step 1) must at minimum contains a method connectedCallback()
+
+3 - Register the new HTML tag
+  You have to use the method 'define' of  'customElements' object (default to Javascript)
+
+Here is an example of implementation of steps 1 to 3
+--------------------------------------------------------------------------------
+	  class Salutation extends HTMLElement {
+	      connectedCallback() {
+		  this.innerHTML = `<h1>Hello World...</h1>`;
+		  this.style.color = "red";
+	      }
+	  }
+
+	  customElements.define('salutation-element', Salutation);
+--------------------------------------------------------------------------------
+
+4 - Include the javascript file of you custom HTML tag (step 1)
+
+5 - User custom Tag in your HTML page
+
+Here is an example of implementation of steps 4 and 5 
+--------------------------------------------------------------------------------
+		<!DOCTYPE html>
+		<html>
+		    <head>
+			<title>Creating Custom Elements</title>
+			<script src="./indexOne.js"></script>
+		    </head>
+		    <body>
+			<salutation-element></salutation-element>
+		    </body>
+		</html>
+--------------------------------------------------------------------------------
+
+
+**1 Maybe you can define customs HTML tag within a <script> section of an HTML file?
+
+  
+HTML
+
+	https://medium.com/technofunnel/create-custom-html-element-without-any-frontend-framework-html5-6e78ada50162
+	https://medium.com/technofunnel/creating-passing-data-to-html-custom-elements-using-attributes-bfd9aa759fd4
+	
+Listening To Change on the Attribute
+====================================
+
+  Every HTML tag can have attributes passed 
+  i.e	<salutation-element nametodisplay="Daniel" color="red"></salutation-element>
+  
+  The do the following to intercept the change on the attribute
+  
+  1 - Add a methnod 'attributeChangedCallback' to your Web Component
+  
+   // 'name' is the attribute name that is changed
+   // 'oldval' is the current value of the attribute
+   // 'newval' is the value we want to put in..
+   attributeChangedCallback(name, oldval, newval) {
+                  if (name === 'nametodisplay') {
+                      this.doSearch();
+                  }
+            }
+  
+  2 - Add a static method 'observedAttributes'
+  
+    static get observedAttributes() {
+                  return ['nametodisplay'];
+    }
+    
+    NOTE: if you do add this method, any change on the attribute will not trigger the execution of attributeChangedCallback

@@ -1,0 +1,20 @@
+Creating console application with Visual Studio has problem with the Antivirus...
+A solution is to write win32 application, but with no windows..
+
+
+
+
+Good PDF that cover the very basic, of Win32: 
+
+https://riptutorial.com/Download/win32-api.pdf
+
+
+
+Write Files:
+============
+
+Here is a simple test that worked (Nov 01, 2020)
+
+	--> D:\data\workspace\HackingLab\project\win32test\simplewin32
+
+https://riptutorial.com/winapi/example/5736/create-a-file-and-write-to-it

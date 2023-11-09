@@ -1,0 +1,159 @@
+HTTP Client lib =>  Simplified HTTP client 
+
+	Web Site:      https://www.npmjs.com/package/request
+	installation:  npm install requests
+	include:       const request = require('request');
+	
+	(use web site https://jsonplaceholder.typicode.com/ for a mock REST server)
+	
+ Example 1
+ =========
+
+	the URL https://jsonplaceholder.typicode.com/todos/1 returns the following JSON
+	
+	{
+	  "userId": 1,
+	  "id": 1,
+	  "title": "delectus aut autem",
+	  "completed": false
+	}
+	  	
+	----------------------------------------------------------------------------------------------------
+
+	const request = require('request');
+
+	const getTodo = () => {
+
+	    request(TODO_URL, (error, response, body) => {
+        
+	         if (error) {
+	             console.error(chalk.redBright('error:', error)); // Print the error if one occurred
+	             return;
+	         } else
+	             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+	         
+	             const todo = JSON.parse(body)
+	             console.log('id = ' + todo.id);
+	             console.log('userId = ' + todo.userId);
+	             console.log('title = ' + todo.title);
+	             console.log('completed is ' + todo.completed);             
+   	    });
+ 	}
+
+
+ Example 2
+ =========
+ 
+   the URL https://jsonplaceholder.typicode.com/photos returns an array of 5000 JSON object like this one
+   
+	 {
+	    "albumId": 1,
+	    "id": 1,
+	    "title": "accusamus beatae ad facilis cum similique qui sunt",
+	    "url": "https://via.placeholder.com/600/92c952",
+	    "thumbnailUrl": "https://via.placeholder.com/150/92c952"
+  	},
+  	
+	----------------------------------------------------------------------------------------------------
+	
+	const request = require('request');
+	const chalk = require('chalk');
+  	const PHOTO_URL = 'https://jsonplaceholder.typicode.com/photos';
+	
+	
+	const displayPhotoDetails = (photo) => {	
+	    const idStr = 'id: '  + chalk.redBright(photo.id);
+	    const titleStr = ' title: ' + chalk.greenBright(photo.title);
+	    const urlStr = '\t' + chalk.underline(photo.url);	
+	    console.log(idStr + titleStr + urlStr);
+	}
+	
+	const getPhotoDetails = () => {
+	
+	   request(PHOTO_URL, (error, response, body) => {
+	
+	        if (error) {
+	            console.error(chalk.redBright('error:', error)); // Print the error if one occurred
+	            return;
+	        } else
+	            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+	        
+	            // Extract the content of the body, which is an array of 5000 items
+	            const allPhotos = JSON.parse(body)
+	            allPhotos.forEach( (nextPhoto) => {
+	                displayPhotoDetails(nextPhoto);
+	            });
+	   });
+	}
+	
+---------------------------------------------------------------------
+
+Simple Web Service (with express)
+=================================
+
+	import express from 'express';
+
+	const app = express();
+
+	app.get('/', (req, res) => {
+	  return res.send('Received a GET HTTP method');
+	});
+
+	app.post('/', (req, res) => {
+	  return res.send('Received a POST HTTP method');
+	});
+
+
+	app.listen(3000, () =>
+	  console.log(`Example app listening on port ${process.env.PORT}!`),
+	);
+
+  Testing:
+  		  curl http://localhost:3000
+    		 
+		  curl -X POST http://localhost:3000
+
+Express:  Parameter in the URL
+=================================
+
+	import express from 'express';
+	const app = express();
+
+	app.get('/users/:userId', (req, res) => {
+  		return res.send( `GET HTTP method on user/${req.params.userId} resource`, );
+  	
+  	app.listen(3000, () =>
+		  console.log(`Example app listening on port ${process.env.PORT}!`),
+	);
+	
+	
+
+	
+Express and CORS problem
+=======================
+  When a client is making an AJAX call where a cross origin happen 
+    (url/domain of the page is different than the url/domain of the server
+      i.e: page http://localhost:3000/test  calling server on http://danjo:3000)
+      
+   Here is a page about the problem and fix with Express library
+	https://expressjs.com/en/resources/middleware/cors.html
+
+    ----------------------------------------------------------------------------------
+    Server example:
+    
+	var express = require('express')
+	var cors = require('cors')
+	var app = express()
+	
+	var corsOptions = {
+	  origin: 'http://example.com',
+	  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+	}
+	
+	app.get('/products/:id', cors(corsOptions), function (req, res, next) {
+	  res.json({msg: 'This is CORS-enabled for only example.com.'})
+	})
+	
+	app.listen(80, function () {
+	  console.log('CORS-enabled web server listening on port 80')
+})

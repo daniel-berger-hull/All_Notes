@@ -1,0 +1,268 @@
+
+
+   
+======================
+- MFC/Win32 CONTROLS -
+======================
+
+
+
+
+#1 Message Box
+===============
+
+  Adding the code to exit the application also...
+  
+ if (CWnd::MessageBox(_T("Want to quit application?"), _T("Exit"), MB_YESNO | MB_ICONEXCLAMATION) == YES_BUTTON)
+ {
+	EndDialog(-1);
+ }
+
+
+#2 Text Box
+===========
+
+  Set Text (Directly) -->  	SetDlgItemText(ID_NUMBER_IN_RESOURCE_H, _T("Desired Text String"));
+  
+  
+  
+#3 ComboBox
+============
+
+3.1 Add content to comboxbox
+
+	CComboBox* m_comboBoxPointer = (CComboBox*)GetDlgItem(ID_NUMBER_IN_RESOURCE_H);
+
+	m_comboBoxPointer->AddString(_T("Desired Text String"));
+	(Repeat as needed)...
+
+3.2 Get selected value
+
+A) Get the index in the list of value, selected by the user
+
+        CComboBox* m_comboBoxPointer = (CComboBox*)GetDlgItem(ID_NUMBER_IN_RESOURCE_H);
+	int selection = m_comboBoxPointer->GetCurSel();
+
+B) Or get the actual text of the value
+	
+	TCHAR message[100];	
+	CComboBox* m_comboBoxPointer = (CComboBox*)GetDlgItem(ID_NUMBER_IN_RESOURCE_H);
+	
+	m_comboBoxPointer->GetLBText(m_comboBoxPointer->GetCurSel(), message);
+	
+#4 Slider (Vertical or Horizontal)
+==================================
+
+
+A simple example here:
+https://depts.washington.edu/cmmr/biga/chapter_tutorials/1.C++_MFC_D3DOGL/1.StepByStepGuide/tutorial_3.html
+And a code can be found here:
+D:\data\workspace\C++\MFC\WashintonMFCTutorials\Tutorial_2
+
+ But here are few core steps
+
+   i) Add a control instance AND variable to your dialog class:
+  	
+  	i.e     CSliderCtrl m_VSliderBar;     //Help to control the slider itself
+  		CString m_VSliderEcho;        //Handy variable to display in a Static or Text Box
+
+   ii) Make sure to update DoDataExchange
+   
+   
+	   void CDlg::DoDataExchange(CDataExchange* pDX)
+	   {
+
+		...
+		DDX_Control(pDX, IDC_SLIDER1, m_VSliderBar);
+	   }
+	   
+   iii) Add handlers for the DIALOG's WM_HSCROLL or WM_HSCROLL
+       Note: User the Resource editor for this: There is a 'message' section (button to the right of the lightbolt)
+
+	Here is a code example for a Vetical Slider
+
+		void CDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+		{
+
+			if (pScrollBar == (CScrollBar*)&m_VSliderBar)
+			{
+				int value = m_VSliderBar.GetPos();
+				m_VSliderEcho.Format(_T("%d"), value);
+				UpdateData(FALSE);
+			}
+			else {
+				CDialog::OnVScroll(nSBCode, nPos, pScrollBar);
+			}
+
+
+		}
+
+
+  iv) Set Range and Ticks
+  
+     	m_VSliderBar.SetRange( MINIMAL_VALUE, MAXMIMAL_VALUE ); //sending true\false doesn't matter
+     	m_VSliderBar.SetPos( POS_TO_START );
+     
+     	m_VSliderBar.SetTic(20);
+     
+     
+     	m_VSliderBar.SetTicFreq(1);
+
+
+
+	
+
+#5 Inherit existing MFC Controls
+--------------------------------
+
+  Sometime, you must subclass on of the MFC control (i.e CStatic, CButton) to customize
+  its behavior
+
+   Note: Steps below did work with a Dialog window: Not sure if they will work with a CWnd type class...
+
+5.1 -  Make sure you create an MFC class, and not a generic class.
+ --> Menu Project / Class Wizard... , 
+     expend the Button-Menu Add Class..
+     Choose MFC Class ... in the sub menu of the button
+
+   i.e: Will inherit the CStatic, and create a CMyStatic class
+
+
+5.2 - Add a refence (Control variable not a pointer to a control Variable) to your main dialog
+
+   i.e: I will add a CMyStatic m_testStatic in my dialog class
+
+
+5.3 - Add a control to your Dialog resource file (*.rc) 
+
+   i.e: I will drag a Static control inside my Window (Dialog resource in the rc file)
+
+5.4 - IMPORTANT! Associate reference Control Variable (step 5.2)   
+
+  Note: If not done, the extend class created in step 5.1 will be used at all!!!
+  
+  Use the main's dialog DoDataExchange method to DO THIS ASSOCIATION
+  
+	  void MyDlgClass::DoDataExchange(CDataExchange* pDX)
+	  {
+		CDialogEx::DoDataExchange(pDX);
+
+		DDX_Control(pDX, RESOURCE_ID_IN_RC_FILE, m_CONTROL_VAR_NAME);
+	  }
+
+  Here is a nice video that describe this:
+  https://www.youtube.com/watch?v=rutjIf5ICtw
+  
+  And a good article here:
+  https://www.codeproject.com/Articles/480/Create-your-own-controls-the-art-of-subclassing
+
+
+#6 Color ListBox
+------------------
+
+Having controls, like ListBox, Combox, etc with custom colors or with Bitmap requires a lot of steps...
+
+--> A) It it like you MUST inherit a class from a know MFC Class (i.e class CMyCombo: public CComboBox)
+--> B) You have to declare and use an instance variable to your new MFC Type  (i.e CMyCombo )
+        NOTE: You can still add a resource in the Visual Studio Editor.
+              Even if you have an instance variable 
+              They must match (.RC --> Has a CComboBox, your code has a CMyCombo var )
+        
+        
+See this web page here, for a ComboBox with colors and images examples
+https://www.codeproject.com/Articles/64/Image-List-Box
+
+
+#7 Color in MFC Controls
+-------------------------
+
+The color (front and back color) of the controls of a windows can be controlled with the handler
+
+	HBRUSH YourMainDialogClass::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+
+ It Returns a CBrush to the color of the background of the control being processed by the method
+ 
+     ...
+    return m_backgroundBrush;
+
+
+ A) The nCtlColor identify the type of control currently processed, here are few usefull values
+ 
+			#define CTLCOLOR_EDIT           1
+			#define CTLCOLOR_LISTBOX        2
+			#define CTLCOLOR_BTN            3
+			#define CTLCOLOR_DLG            4
+			#define CTLCOLOR_SCROLLBAR      5
+			#define CTLCOLOR_STATIC         6
+ B) Identify a specific control being draw:
+ 
+ 	if (pWnd->GetDlgCtrlID() == THE_RESOURCE_ID_OF_CONTROL )
+ 	{
+ 		... Do something here...
+ C) More colors, like the text color or transparency of the control can be controlled
+ 
+   if (pWnd->GetDlgCtrlID() == IDC_SIGNAL_FREQUENCY_LABEL )
+   {
+   	pDC->SetTextColor(RGB(255, 255, 255));
+   	pDC->SetBkMode(TRANSPARENT);
+   	return m_backgroundBrush;
+   }
+
+...
+
+#10 Make Custom MFC Controls
+
+The article below appears to show how to create a custom control, from the existing
+'Custom Control' of the VS resource editor toolbar.
+
+This may be an  alternative to going into full ActiveX/OCX development...
+
+https://www.codeproject.com/Articles/5032/Creating-and-Using-custom-controls-in-VC
+https://www.codeproject.com/Articles/521/Creating-Custom-Controls
+
+
+IMPORTANT NOTES!!!!:
+   
+   If you follow the first code example above, it will work! (Feb 2022: I did try the second example yet, so I can say)
+   BUT, a common runtime error will happen if you don't identify correctly the Custom Resource in your RC file
+
+   See below, the Custom Control defined in code of the example is 'MyDrawPad'
+   -->> So make sure to use the same string of class name as used to register the new control name in Windows's 
+   
+   
+   IDD_CUSTOMCONTROL_DIALOG DIALOGEX 0, 0, 282, 101
+ 	...
+   BEGIN
+       ...
+       CONTROL         "Custom1",IDC_CUSTOM1,"MyDrawPad",WS_TABSTOP,5,5,210,90
+   END
+
+
+==================
+- MFC/Win32 MENU -
+==================
+
+#2 Floating Menu on mouse right click
+
+  i)  In the resource, add an extra menu (to be displayed on the right click) 
+
+  ii) Inside your Dialog MFC Class's  message map add
+  
+	  BEGIN_MESSAGE_MAP(YourDialogClass, CDialogEx)
+		ON_WM_RBUTTONDOWN()
+		...
+	  END_MESSAGE_MAP()
+   
+   iii) Add the OnRButtonDown in your   Dialog MFC Class
+   
+   void YourDialogClass::OnRButtonDown(UINT nFlags, CPoint point)
+   {
+   	CMenu menu;
+   	menu.LoadMenuW(IDR_MENU1);//Load menu resource 
+   	CMenu* pPopup = menu.GetSubMenu(0);
+
+   	ClientToScreen(&point);//Converts the client area coordinates to screen coordinates
+   	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);   
+   }
+   
+

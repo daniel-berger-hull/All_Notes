@@ -1,0 +1,17 @@
+Aside the Arduino's delay function, it is possible to tap into the Expressif-IDF code to implement a native delay function
+
+For instance, the example here is using a MCU command of no operation
+
+	#define NOP() asm volatile ("nop")
+
+to slowdown the execution of a program.
+
+To complement the delay function, it is needed to interogate the system about the system time,
+so that the delay can know when to resume the execution of the program.
+Function like:
+
+		esp_timer_get_time()  and 
+		micros()
+		
+Can help in this task
+		

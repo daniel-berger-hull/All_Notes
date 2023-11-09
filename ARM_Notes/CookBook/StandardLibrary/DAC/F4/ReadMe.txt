@@ -1,0 +1,3 @@
+This example shows the 2 waves Generation (Triangle & White Noise), plus tries a coded Sinus and Ramp Signal.
+
+But the 2 last don't appear to work...

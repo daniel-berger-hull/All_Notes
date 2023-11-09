@@ -1,0 +1,8 @@
+There is no straight way to break down a web page into sub components, write then into seperated and focused html
+file, so that they can be later all included into a main HTML document.
+
+there is a way around, not perfect, but is using Javascript for loading, and few 'w3-include-html' tag
+
+See here for the details:
+
+    https://www.w3schools.com/howto/howto_html_include.asp

@@ -1,0 +1,36 @@
+It appears that the way to set an alternate function on a pin of an STM32F4 and 
+STM32F3/F103 are not done the same way.
+
+For the F4, The constants about the Alternate function, as contained in the file stm32f4xx_gpio.h, are 
+quite explicit about what they do. 
+
+They normally have a postfix on the type of function they do:
+ 
+i.e     GPIO_AF_TIM2   -->  Will output event of Timer 2 on the pin
+        GPIO_AF_SPI1   -->  User by the first SPI controller for the transfer (will run via this pin)
+        GPIO_AF_USART2 -->  Will become one of the pin of the USART connection of the second UART controler
+
+And we write code quite explicit like this:
+
+i.e:   GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+But for the F3/F103, there the constants contain only an index, which you have to refer to the STM32F303 Datasheet (starting p44) to
+know exactly the function assigned for the pin.
+
+For example (on STM32F3), the first UART controler is using the pins
+
+  PA8  -- Clock
+  PA9  --> TX
+  PA10 --> RX
+  (see F3 Datasheet, p44)
+
+But those function are on the column 7 of the array. So we end up to use a constant like GPIO_AF_7.
+And this requires code (not very obvious at first signt) like this to configure the future USART pins
+
+i.e:
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_7);
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_7);
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_7);
+

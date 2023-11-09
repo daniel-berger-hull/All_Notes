@@ -1,0 +1,20 @@
+NOTE: *** All details here are written using Timer2, but the very same details are exact for Timer0 also ***
+
+Fast PWM vs Phase PWM
+
+   i)  The fast PWM is direcly aligned with the value on the counter and the related Output Counter value
+   ii) The Phase PWM (accourding to MaxEmbeded Web Site), would follow a triangle counter (0-255-0), so 
+       would be 'centered' in the duty cycle, will the PWM is left aligned
+       
+Fast PWM Mode 3  vs 7
+
+     In Mode 3, each channels are independent, and the duty cycle are controlled  by their respective 
+     		Output Compare value
+     				Channel A --> OCR2A --> Output on Pin PB3
+				Channel B --> OCR2B --> Output on Pin PD3
+	     The frequency of both channel is the same, and controlled by the prescalling set in the 
+	     TCCR2B register (CS22,CS21,CS20)
+     
+     In mode 7, each output compare are used in pair to control the output.
+     		The output compare A (OCR2A) control the frequency of the timer (counts from 0 to OCR2A)
+     		The compare B (OCR2B) control the duty cycle

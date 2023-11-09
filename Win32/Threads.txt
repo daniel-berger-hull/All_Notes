@@ -1,0 +1,147 @@
+Simple Thread:
+===============
+
+The method CreateThread  require a handler method to be run
+
+#include <windows.h>
+#include <stdio.h>
+
+DWORD WINAPI ThreadProc(LPVOID);
+int main(void)
+{
+    HANDLE hThread;
+    DWORD dwThreadID;
+
+
+    // Create a thread
+    hThread = CreateThread(
+        NULL,         // default security attributes
+        0,            // default stack size
+        (LPTHREAD_START_ROUTINE)ThreadProc,
+        NULL,         // no thread function arguments
+        0,            // default creation flags
+        &dwThreadID); // receive thread identifier
+
+    if (hThread == NULL)
+    {
+        printf("CreateThread error: %d\n", GetLastError());
+        return 1;
+    }
+
+    //The main thread will do nothing...
+    Sleep(3000);   
+    return 0;
+}
+
+DWORD WINAPI ThreadProc(LPVOID lpParam)
+{
+    // lpParam not used in this example
+    UNREFERENCED_PARAMETER(lpParam);
+
+    printf("do something here...\n");
+    return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+Simple & Events 
+===============
+
+
+Event are created with CreateEvent, and are triggered by the emitter with the function SetEvent. 
+The listener thread (main or owner thread) can listen to Events with WaitForSingleObject or WaitForMultipleObjects
+
+#include <windows.h>
+#include <stdio.h>
+
+
+HANDLE ghMyEvent;
+DWORD WINAPI ThreadProc(LPVOID);
+
+
+int main(void)
+{
+    HANDLE hThread;
+    DWORD dwEvent, dwThreadID;
+  
+    ghMyEvent = CreateEvent(
+        NULL,   // default security attributes
+        FALSE,  // auto-reset event object
+        FALSE,  // initial state is nonsignaled
+        NULL);  // unnamed object
+
+    // Create one event object
+    if (ghMyEvent == NULL)
+    {
+        printf("CreateEvent error: %d\n", GetLastError());
+        ExitProcess(0);
+    }
+
+  
+    // Create a thread
+    hThread = CreateThread(
+        NULL,         // default security attributes
+        0,            // default stack size
+        (LPTHREAD_START_ROUTINE)ThreadProc,
+        NULL,         // no thread function arguments
+        0,            // default creation flags
+        &dwThreadID); // receive thread identifier
+
+    if (hThread == NULL)
+    {
+        printf("CreateThread error: %d\n", GetLastError());
+        return 1;
+    }
+
+    // Wait for the thread to signal the event objects
+    printf("Waiting for an event....\n");
+
+
+    dwEvent = WaitForSingleObject(ghMyEvent, 5000);
+
+    // The return value indicates which event is signaled
+    printf("Event Received!\n");
+
+    switch (dwEvent)
+    {
+        // ghEvents[0] was signaled
+    case WAIT_OBJECT_0 + 0:
+        // TODO: Perform tasks required by this event
+        printf("First event was signaled.\n");
+        break;
+
+   
+    case WAIT_TIMEOUT:
+        printf("Wait timed out.\n");
+        break;
+
+        // Return value is invalid.
+    default:
+        printf("Wait error: %d\n", GetLastError());
+        ExitProcess(0);
+    }
+
+    CloseHandle(ghMyEvent);
+    
+    return 0;
+}
+
+DWORD WINAPI ThreadProc(LPVOID lpParam)
+{
+
+    // lpParam not used in this example
+    UNREFERENCED_PARAMETER(lpParam);
+
+    // Set one event to the signaled state
+    if (!SetEvent(ghMyEvent))
+    {
+        printf("SetEvent failed (%d)\n", GetLastError());
+        return 1;
+    }
+
+    return 0;
+}
+
+
+

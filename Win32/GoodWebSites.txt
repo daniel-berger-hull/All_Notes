@@ -1,0 +1,7 @@
+This location is a collection of many good win32 programming topics
+(Win Services, Process, Registery, WinSocket, etc)
+https://www.installsetupconfig.com/win32programming/
+
+
+Here is anothere place, with few good topics
+https://www.nexus-6.uk/

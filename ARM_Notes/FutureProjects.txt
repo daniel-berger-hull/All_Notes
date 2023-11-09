@@ -1,0 +1,64 @@
+
+* Color LCD SSD1299
+ 	  This site has a driver that appears to work https://github.com/LonelyWolf/stm32 under
+ 	  the section ssd1289. The code indicates that it should work on an STM32F103, but
+ 	  that may require too much cabling with the board to be appropriate.
+ 	  May try to transpose the code for the F3 or F4 Disco.
+   
+   
+* DMA transfer - Mem to Mem
+ 
+ 	I think I tried this one http://www.embedds.com/using-direct-memory-access-dma-in-stm23-projects/
+ 	and it worked fine.
+ 
+* DMA Example on F3 (email on Gmail)
+ 	SAme as previous, but on a F3 Disco. Also, it appears to have a display on UART for debugging.
+ 
+
+* Monochrome VGA on F103
+
+ 	This cool project http://www.artekit.eu/vga-output-using-a-36-pin-stm32/ connect a F103 board
+ 	to a VGA cable, and is acting as a simple VGA driver!
+ 
+ 	They even made a Space Invader using the same lib:
+ 	http://www.artekit.eu/space-invaders-for-stm32/
+ 
+ 
+ * USB to PC
+ 
+  This site as a very prominzing info about USB transfer with a PC
+   http://www.emcu.it/STM32/STM32-USB-FS/USB-FSDeviceLibrary.html
+
+   Also, I saved at the location 
+                 D:\data\Electronic\STM32\Libs\USB-FS
+   One of the core USB driver the site refers too...
+   Will require a lot of reading and study, but may pay a lot once understood...
+   
+ * Analyse the ST Electronic Demos
+  May have overlooked the demos from ST, and there may be some basics, but still very handy techniques and theory
+  in there:
+  
+    D:\data\Electronic\STM32\Board_Demo\STM32F4-Discovery_FW_V1.1.0\Project\Peripheral_Examples
+   
+ THEORY
+ =======
+ 
+ * Good diagram on the Output Compare mechanism
+ 
+ 	 The compare operation used with timer specially is well described in this diagram.
+  
+ 	http://00xnor.blogspot.ca/2014/01/3-stm32-f4-general-purpose-timers.html
+ 
+ 
+ * Good page specialized on STM32F103 boards 
+ 
+ 	This site is very specific about using the F103 boards, not just the
+ 	clone eBay version (that we have to solder all the pins ourselves), 
+ 	but the older version (the first one I order some years ago) 
+ 
+ 
+ 	http://www.sunspot.co.uk/Projects/Arduino/STM32/STM32.html
+ 
+ 
+ 
+ 

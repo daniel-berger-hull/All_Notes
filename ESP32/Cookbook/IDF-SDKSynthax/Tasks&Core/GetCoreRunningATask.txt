@@ -1,0 +1,6 @@
+//Used the xPortGetCoreID, which returns an integer  (0 or 1)
+void app_main()
+{
+
+     printf("Method %s is running on core %d\n", "app_main" , xPortGetCoreID());
+}

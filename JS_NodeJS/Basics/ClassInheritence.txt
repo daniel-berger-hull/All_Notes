@@ -1,0 +1,43 @@
+
+Multiple Inheritence (Mixin)
+=============================
+
+Javascript is not supporting for say Multiple Inheritence, but offer 
+a mixin, which permits to add functions (and fields?) to a classe already defined 
+
+Check the following web site:  https://www.digitalocean.com/community/tutorials/js-using-js-mixins
+
+Example:
+
+	//The swim property here is the mixin
+	let swim = {
+	  location() {
+	    console.log(`Heading ${this.direction} at ${this.speed}`);
+	  }
+	};
+
+	let Alligator = function(speed, direction) {
+	  this.speed = speed,
+	  this.direction = direction
+	};
+	
+	class Reptile {
+	    constructor(name) {
+	      this.name = name;
+	    }
+	};
+
+	//This add to the instance itself...
+	let alligator = new Alligator('20 mph','North');
+	alligator = Object.assign(alligator, swim);
+	alligator.location();
+
+  	// Modification on the class
+  	Object.assign(Reptile.prototype, swim2);         //This one works!
+        let alligator2 = new Reptile("alligator");
+        alligator2.setSwimProperties("5 m/s", "upstream");
+        alligator2.getSwimProperties();
+        
+        
+        
+        

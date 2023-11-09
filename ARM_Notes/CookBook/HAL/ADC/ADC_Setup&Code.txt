@@ -1,0 +1,151 @@
+
+Good article here:
+
+https://www.digikey.com/en/maker/projects/getting-started-with-stm32-working-with-adc-and-dma/f5009db3a3ed4370acaf545a3370c30c
+
+Cover few type of ADC (simple ADC, DMA )
+
+
+A) Simple ADC - Polling Value
+==========================
+(With no DMA or Trigger)
+
+
+1 - Make sure to configure of of the ADC peripheal (i.e ADC1, ADC2 or other) in STMCude, and notice the Pins assigned...
+
+2 - Add the following in the main.c of your project
+
+     uint16_t raw;
+
+   // Read Analog value on the pin assigned (i.e PA0)
+   HAL_ADC_Start(&hadc1);
+   HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+   raw = HAL_ADC_GetValue(&hadc1);
+   
+ NOTE: This setup is too simplistic. A version with a Continuous update  (B) ) and/or timer ( c) ) should be at least used...
+
+
+B) Simple ADC - Continuous Update
+=================================
+(With no DMA or Trigger)
+
+this version is like A), but the ADC is retriggering itself, so that there is no need to wait
+for the ADC to finish a reading, as there is at least the last reading available in the ADC Data register.
+
+1 - Make sure to configure of of the ADC peripheal (i.e ADC1, ADC2 or other) in STMCude, and notice the Pins assigned...
+    In the ADC property, the 'Continius Conversion Mode' should be 'enabled'
+
+2 - Add the following in the main.c of your project
+  
+    // Before the main loop...
+    uint16_t raw;
+    HAL_ADC_Start(&hadc1);
+
+ while (1)
+ {
+    //With in the main loop  
+    raw = HAL_ADC_GetValue(&hadc1);
+ }    
+ 
+ Note: This version is much more convenient that version A). But using a timer to trigger the ADC conversion is more 
+       pratical, and fee the main CPU to do something else...
+
+C) Simple ADC - Timer Trigger Update
+=================================
+(With no DMA)
+ Here, instead of using an explicity HAL_ADC_Start method call, a timer is used to trigger the conversion...
+ 
+ 1 - Timer X
+     Enable one timer (Timer 2 been successfull)
+     
+    Only set the Clock Source --> Internal Clock
+    Prescaler  --> ** The timer number is either on  APB1 or APB2 main clock, with in in MHz
+                       use something like 16000 or 32000 to bring the clock pulse of the 
+                       selected timer into a range pratical (1000 ticks a second is great)
+    Trigger Event Selection TRGO --> Update Event
+    
+ 
+ 2 - Make sure to configure of of the ADC peripheal (i.e ADC1, ADC2 or other) in STMCude, and notice the Pins assigned...
+     In the ADC property,
+       
+       External Trigger Conversion Source --> Timer X Trigger Out Event
+       External Trigger Conversion Edge -->   Trigger detection on rising edge
+       
+       Note --> Do NOT enable the 'Continius Conversion Mode' 
+       
+       NVIC-ADC1 and ADC2 interupts --> Enable
+       
+ 3 - Add this code in the project
+ 
+ 
+    uint16_t raw;
+    
+    /***   It needs a interupt method to handle the time int ***/
+    void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+    {
+      UNUSED(hadc);
+    
+      raw = HAL_ADC_GetValue(&hadc1);
+      // May add a LED toggle
+      HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_9 );
+     }
+    
+       // Before the main Loop
+      HAL_TIM_Base_Start_IT(&htim2);
+      HAL_ADC_Start_IT(&hadc1);
+      
+      main loop()   --> Nothing required!
+
+
+D) Auto ADC -  DMA support 
+=================================
+
+ This is the most advanced design, and the most efficient one, in terms of CPU usage.
+ 
+ 1 - ADC
+   
+   Set the ADC 1 as following
+   ADC1   IN1  Single-ended
+      Continuous Conversion Mode to Enabled
+      DMA Continuous Requests    to Enabled    ( **Note this option may be only available after you do step 2)
+      
+  2 - DMA
+  
+  DMA
+     New DMA Request in DMA1  --> ADC1
+    Mode to Circular
+    
+  See the following Web Site for details:
+    https://www.digikey.com/en/maker/projects/getting-started-with-stm32-working-with-adc-and-dma/f5009db3a3ed4370acaf545a3370c30c
+    
+    
+ 3 - Coding
+ 
+   #define ADC_BUF_LEN 4096
+     
+     uint16_t adc_buf[ADC_BUF_LEN];
+     
+     
+      HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buf, ADC_BUF_LEN);
+     
+       while (1)
+       {
+       	//
+       }
+       
+       
+       // Called when first half of buffer is filled
+       void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
+       	//Faculative: Display the state of the fill up of the data array
+       	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
+       	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_10, GPIO_PIN_RESET);
+       
+       
+       }
+       
+       // Called when buffer is completely filled
+       void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+         //Faculative: Display the state of the fill up of the data array
+       	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+       	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_10, GPIO_PIN_SET);
+      }

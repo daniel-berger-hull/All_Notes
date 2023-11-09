@@ -1,0 +1,7 @@
+Great and simple GUI lib, that is an alternative to Microsoft MFC, and is much
+lighter than Qt and wxWidget libraries...
+
+https://sourceforge.net/projects/win32-framework/
+
+ It support the latest Windows controls, like the Ribbon!!!
+ Try to check their code and see what can be learned from it
