@@ -1,0 +1,2 @@
+Few good tricks on the hacking of web sites:
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master

@@ -2,18 +2,30 @@
 BASIC COMMANDS
 ==============
 
+
+
+
  Note: You may have to run  the C:\data\Electronic\ESP_chips\esp-idf\esp-idf\export.bat at the beginning of your session.
        Otherwise, the Python script idf.py does not appear to be recognized...
+
+       OR BETTER --> Use the 'ESP-IDF 5.1 CMD' on the desktop, and it will do all the setup for you... 
 
 	#1 idf.py create-project <project name>
 	#2 idf.py set-target <project name>
 	#3 idf.py build 
 
 	#4 idf.py -p (PORT) flash
+	    i.e idf.py -p com4 flash
+	    
 	    Note: A press on the boot loader button (On the opposite side of the led of the board) required
 
 	#5 idf.py -p (PORT) monitor
-	   Note: This time, it may not require a push on the bootload button (not on the ESP32S I tested dough)
+	   
+	   Note #1: This time, not required to push on the bootload button (not on the ESP32S I tested dough)
+	   Note #2: You have to be INSIDE the folder where you did build and flash your project
+	            (runing monitor anywhere else did not work so far)
+	            
+	   The output message of the IDF's ESP_LOGI function will be visible on the screen
 	   
 	   Led Pin --> #2 (The blue led on the board)
 	   

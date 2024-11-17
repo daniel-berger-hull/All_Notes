@@ -1,0 +1,6 @@
+Install XFCE (Linux Desktop):
+  https://hub.tcno.co/windows/wsl/desktop-gui/
+
+
+1 - Start the server: sudo /etc/init.d/xrdp start
+2 - Connect with Windows' Remote Desktop --> localhost:3390
