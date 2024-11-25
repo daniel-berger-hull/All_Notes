@@ -1,4 +1,21 @@
 
+General note:
+
+The config file for npm is C:\Users\dxb160\.npmrc.
+Make sure to:
+  1 - Have a proxy 
+      proxy=http://dxb160:<YourWinPassword>@proxy.OMEGA.DCE-EIR.NET:8080
+      https-proxy=http://dxb160:<YourWinPassword>@proxy.OMEGA.DCE-EIR.NET:8080
+   Note 1: 
+       Plain characters works with npm (few are using a % based characters (like %65  --> 'a') for special char in the P.W
+  
+  2 - Have or don't have a registry
+    For normal projects --> no registry , it will default to https://registry.npmjs.org/
+    For CBSA projects --> registry = "https://artifactory.cbsa-asfc.cloud-nuage.gc.ca/artifactory/api/npm/npm-dev/_auth = <base64 credentials>"
+
+  To see your current registry settings -->  npm get registry
+
+   *** I have to remove the registry to have it to work for normal nodejs projects
 
 *** TEXT AND OTHERS  ***
 

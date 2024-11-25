@@ -20,12 +20,7 @@ BASIC COMMANDS
 	    Note: A press on the boot loader button (On the opposite side of the led of the board) required
 
 	#5 idf.py -p (PORT) monitor
-	   
-	   Note #1: This time, not required to push on the bootload button (not on the ESP32S I tested dough)
-	   Note #2: You have to be INSIDE the folder where you did build and flash your project
-	            (runing monitor anywhere else did not work so far)
-	            
-	   The output message of the IDF's ESP_LOGI function will be visible on the screen
+	   Note: This time, it may not require a push on the bootload button (not on the ESP32S I tested dough)
 	   
 	   Led Pin --> #2 (The blue led on the board)
 	   

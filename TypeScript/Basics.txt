@@ -1,0 +1,18 @@
+Create Typescript Project (NodeJS)
+-----------------------------------
+
+
+1) npm init -y      				
+     --> Create the basic NodeJS projet
+2) npm install typescript --save-dev   
+     --> Install Typescript
+3) npx tsc --init                   
+     --> Setup project for Typescript (Create a tsconfig.json)
+4) Modify tsconfig.json
+   i)  Add    			"include": ["src"],    (before the   "compilerOptions": {)
+   ii) Uncomment and modify  -->      "outDir": "./build",       
+5) Create a ./src folder
+
+6) Compile:
+   npx tsc 
+ Note: No .ts source required as the "include" param set above will have the compiler to look for source code inside the folder pointed by "include" (which is ./src) 

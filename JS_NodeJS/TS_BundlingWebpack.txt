@@ -1,0 +1,13 @@
+Using module in TS/JS helps a lot of development, but on the deployment side, it is really problematic
+
+Webpack appears to be solution: (Takes a lot of code and bundle into one .js file, easy to reference)
+
+   https://blog.logrocket.com/using-webpack-typescript/
+
+
+Need to install few dev  dependency in your project:
+  
+  npm install -D webpack webpack-cli ts-loader webpack-dev-server
+  npm install -D html-webpack-plugin css-loader mini-css-extract-plugin css-minimizer-webpack-plugin
+  npm install -D copy-webpack-plugin 
+

@@ -1,0 +1,7 @@
+Download:           An  AWS S3 named 'Traveller-Tools'  has Maven
+Configuration:     https://phoenixnap.com/kb/install-maven-windows
+
+Create Simple project
+---------------------
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=<Project Name> -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+

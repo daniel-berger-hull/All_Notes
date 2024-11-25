@@ -1,0 +1,8 @@
+
+The following site is a DB of vunerable sites and devices on the web...
+https://www.shodan.io/
+
+
+Malware Development:
+
+Good repository on the heap overflos exploints: https://github.com/shellphish/how2heap

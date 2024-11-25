@@ -6,8 +6,33 @@ Include Modules of JavaScript in an HTML page appears to be more challenging, th
 doing the same in a simple NodeJS project. Here are few steps
 
 
-1 - Use 'import' Statement in HTML page.
 
+Simplest Solution:
+------------------
+
+   Identify your script as module, as following
+
+        <script src="index.js" type="module"></script> 
+
+ You must make sure that in there is code that will be executed by defailt in your script file
+ For instance:
+
+ function main(){
+    ...
+ }
+ 
+ ...
+ 
+ main()  //This will be invoked by default, when you include the script in the HTML
+ 
+
+Solution using code in HTML:
+------------------------------
+
+If code must be run in the HTML, then the solution above is not enough. Us this oneSolution
+
+ Use 'import' Statement in HTML page.
+ ===================================
   
   Include the Javascript file straight into the HTML page like:
   

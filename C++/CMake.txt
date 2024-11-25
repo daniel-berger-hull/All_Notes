@@ -1,0 +1,14 @@
+Mininum CMake:
+
+
+	cmake_minimum_required(VERSION 3.0)
+	project(simple)
+	add_executable(simple ./src/test.cpp)
+
+    # If you have more .cpp file, it is called 'library'
+	#add_library(mylibrary ./src/mylib.cpp ./src/mylib.h ./src/MyClass.cpp ./src/MyClass.h)    [step #1]
+	#target_link_libraries(simple mylibrary)                                   [step #2]
+	
+    # Handy method --> 'message'
+	#message(PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
+    #message(INCLUDE_DIRECTORIES="${INCLUDE_DIRECTORIES}")

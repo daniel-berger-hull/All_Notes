@@ -1,3 +1,49 @@
+Web Debugging TypeScript with VS Code
+======================================
+
+But that have it to work, it is really complex...
+
+Steps:
+
+1 - NodeJS Project Create a NodeJs project   (npm init -y)
+2 - Create an NodeJS Server
+    Install NPM express and nocache    (npm install express nocache)
+    Use the \TypeScriptDebuging\server.js code  
+       (That is a really strange config, that server on public and root folder of your project.
+       If YOU DON'T DO THAT, IT WILL NOT WORK!)
+ 3 - package.json
+   Use the \TypeScriptDebuging\package.json file code  
+  Some minor tweak, like on the script section will help
+
+ 4 - tsconfig.json
+  Here, there are a lot of pitfall. 
+ Make sure to  have 
+    i)   The source map file for the debug        -->  "sourceMap": true,
+    ii)  Use a source file for your .ts file      --> Here create a src folder, and add     "rootDir": "./src", 
+    iii) Use an output folder (very convenient)   --> Here use /public, as it is a default folder for many web sever,   add "outDir": "./public",
+    iv)  Put the right JS target (ES2015, ES6, CommonJS) -->   "target": "es2016" did work
+    v)   Add an inclusion, to avoid warning with the server.js  -->  "include": ["src/**/*.ts"],
+         (force to transpile only the Typescript files)
+ 
+ 5 - HTML file 
+  The correct <Script synthax> in the HTML file
+         --> <script type="module">
+              import { helloWorld } from './index.js';
+              helloWorld();
+            </script> 
+    Otherwise, the browser will give an error that you can't run imports into a non-module file
+
+
+To Do:
+   This method is very ugly. Work to fix the following:
+
+   1 - Remove Serving 2 folders
+    Remove the need to have a server that serves on 2 different folder (root and /public)
+    The root is a patch, to make the browser able able to fetch the Typescript code and display it in the Browser's debug.
+    It is due to the URL that the browser fetch the file, the htt
+
+
+
 Debugging TypeScript with VS Code
 =================================
 

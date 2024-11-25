@@ -1,0 +1,22 @@
+There are 3 types of components/libs in NodeJS, and all depends system used
+
+1 - CommonJS 
+-------------
+ --> Have to use a require('<libName>')
+     (Will generate an error if we use import on those libs)
+
+
+  All default NodeJS libs are CommonJS (fs, http, etc...)
+
+  Works with no other config required on the NodeJS project
+
+2 - ES6 (ECMAScript)
+--------------------
+
+ --> Have to use the import ...
+  Most third party libs are based on ES6  
+  Must define the NodeJS as a module
+
+  Config: 
+    run  npm init es6 -y
+    

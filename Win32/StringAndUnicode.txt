@@ -1,0 +1,47 @@
+Win32 is using 16 chars (Unicode), and this can be a bit more tricky
+
+Basic Types
+===========
+
+Win32 Type
+-------------
+CHAR			   --> char             (8 bits)
+PSTR or LPSTR	   --> char*            (8 bits)
+PCSTR or LPCSTR	   --> const char*      (8 bits)
+PWSTR or LPWSTR	   --> wchar_t*         (16 bits)
+PCWSTR or LPCWSTR  -->	const wchar_t*  (16 bits)
+
+String manipulation
+===================
+
+Can't use regular c/c++ string method (sprintf, strcpy)!
+Here are few one to use:
+
+ Ascii to Unicode
+ ----------------
+  
+ Use 'L'
+  To convert constant strings, Precede ascii string with an L to convert ascii to Unicode
+
+   	const wchar_t* str = L"hello";
+
+  Use method mbstowcs
+
+   	wchar_t wideArray[30];    // 16 bits Destination string	
+	char asciiString[30];     //  8 bits source string
+
+	mbstowcs(wideArray, asciiString, 30);			// The size argument is based on 8 bits chars (so 30 char in the ascii array)
+	mbstowcs(wideArray, "Jocelyne Bedard", 30);
+
+ Unicode to Ascii
+ ----------------
+
+  May be less frequent, but you may want to convert 16 bits string to 8 bits
+  Use wcstombs:
+
+  char asciiString[30];     //  8 bits Destination  string
+  wchar_t wideArray[30];    // 16 bits source string	
+  
+
+  wcstombs(asciiString,L"Wide String",30);  //Using a constant string
+  wcstombs(asciiString, wideArray, 30);

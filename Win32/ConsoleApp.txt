@@ -1,0 +1,20 @@
+
+This small PDF give really good hints on the Win32 Console programming
+
+https://www.installsetupconfig.com/win32programming/winconsolecharapplication8.pdf
+
+Main function
+============
+
+You may use the wide version of the main in our console application:
+
+   #include <windows.h>  
+   int wmain(int argc, WCHAR **argv) {
+
+   }
+
+Write Characters
+=================
+
+Use the Unicode wide char instead of printf
+wprintf(L"CreateConsoleScreenBuffer() failed, error %d\n");

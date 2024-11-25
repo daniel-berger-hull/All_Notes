@@ -1,0 +1,12 @@
+Injecting Shell Code
+====================
+
+Tried to inject a Shell Code, and project is here:
+    C:\data\workspaces\c++\win32\DLLInjection
+
+status: Sept 9, 2024 --> Failed! 
+                         Injector crashes when trying to copy shell code
+                         into virtual memory
+
+
+              dumpbin /imports <exeName>

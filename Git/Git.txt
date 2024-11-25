@@ -1,6 +1,32 @@
 
+Basic Commands
+==============
+
+git status 
+  show modified files in working directory, staged for your next commit 
+
+git add [file] 
+  add a file as it looks now to your next commit (stage) 
+
+git reset [file] 
+  unstage a file while retaining the changes in working directory 
+
+git reset --hard [commit] 
+  clear staging area, rewrite working tree from specified commit
+
+git diff 
+  diff of what is changed but not staged git diff --staged diff of what is staged but not yet committed 
+
+git commit -m “[descriptive message]” 
+  commit your staged content as a new commit snapshot
+
+
+
+
+
 A great web site with simple list and explanations: 
-  https://frontend.turing.edu/lessons/module-1/git-commands.html
+  * https://education.github.com/git-cheat-sheet-education.pdf
+  * https://frontend.turing.edu/lessons/module-1/git-commands.html
 
 Another with more text:  https://www.nobledesktop.com/learn/git/git-branches
 

@@ -1,0 +1,18 @@
+{
+  "name": "bellman-ford2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc && copy .\\src\\*.html .\\public && copy .\\src\\*.css .\\public",
+    "clean": "del /s .\\public\\*.js && del /s .\\public\\*.map && del /s .\\public\\*.html && del /s \\public\\*.css && rmdir .\\public /s /q"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nocache": "^4.0.0"
+  }
+}

@@ -1,4 +1,12 @@
 
+ESP Debugging
+-------------
+
+ Need to by an ESP JTAG adapter!  That appears to be the way to go...
+
+ Zadig: That is tool that is used a lot, to flash firmware, and the debug drivers escialy.
+
+
 
 ESP-IDF
 -------
