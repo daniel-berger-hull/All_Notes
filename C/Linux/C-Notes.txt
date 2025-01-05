@@ -1,0 +1,12 @@
+Print in Color:
+---------------
+
+  Use the same synthax as the script in Terminal.
+ i.e:
+	#define RESET   "\033[0m"  // Reset to default color 
+	#define RED     "\033[31m" // Red text 
+	#define GREEN   "\033[32m" // Green text 
+
+	 printf(RED "This text is red!\n" RESET); 
+     printf(GREEN "This text is green!\n" RESET); 
+     
