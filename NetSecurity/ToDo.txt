@@ -1,0 +1,11 @@
+SSH and Keys
+-------------
+   Create private and public keys with openSSL
+
+DOS netsh 
+---------
+
+  This is a very versatile command tool, and can create port forward,
+  modify Firewall and many other network functions..
+  
+Read   Programming\Linux\Linux Shell Scripting Essentials.pdf

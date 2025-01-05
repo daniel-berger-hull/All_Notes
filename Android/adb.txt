@@ -1,0 +1,8 @@
+Android Debug Bridge (ADB):
+  appears to be a command line (Terminal) to run commands
+
+  Installation: 
+  https://www.xda-developers.com/install-adb-windows-macos-linux/
+
+  Good Tutorial (Basic ADB commands):
+  https://www.youtube.com/watch?v=uOPcUjVl2YQ&t=153s

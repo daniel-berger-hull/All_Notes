@@ -1,0 +1,7 @@
+eval permits to evaluate or litteraly execute the content
+of a string
+
+   Synthax:   command="ls"
+			  param="-l"
+
+			 eval $command $param

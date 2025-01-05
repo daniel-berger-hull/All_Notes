@@ -1,0 +1,5 @@
+Root Device:
+--------------
+  Learn how to root an Android phone device, as it will be require for a lot of things.
+
+

@@ -1,0 +1,2 @@
+Experiment with the GPU.js, which is an npm package that 
+permits to use the GPU for calculations.

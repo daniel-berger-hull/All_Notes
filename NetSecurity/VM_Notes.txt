@@ -1,0 +1,49 @@
+Create Shared Drive (VMWare Workstation)
+===================================================
+
+Problem:   Even if configured on the Host (Windows), it may happen that the shared drive doesn't show in the guess machine.
+
+Test: 
+run following command:
+   vmware-hgfsclient
+Expected Result: Should display the name of the shared
+                 folder (but may not be accessible yet)
+
+go to: 
+   /mnt/hgfs folder
+Expected Result: Should also display the shared folder
+
+If Shared drive not visible 
+  --> Potential problem with service mnt-hgfs...
+
+ Check great article here:
+https://knowledge.broadcom.com/external/article?legacyId=74650
+
+Bascially:
+
+1) Need those files to exist:
+    /etc/systemd/system/mnt-hgfs.mount
+    /etc/modules-load.d/open-vm-tools.conf
+2) Need to have the mnt-hgfs defined an running
+    Enable with: sudo systemctl enable mnt-hgfs.mount
+    Start with:  sudo systemctl start mnt-hgfs.mount
+
+Network Connection between 2 VM running on my Windows
+=====================================================
+
+#1 Use NAT interface
+--------------------
+   VM will be visible each others. The IPs will not be on the local network (Chimere Rooter), and have addresses in the 192.168.X.Y.
+   But it will work
+
+#2 Use Bridged or Other non NAT
+-------------------------------
+   A VM using a Bridged config will use an physical network device 
+   (my WiFi USB card for instance ), and be visible on the LAN (Chimere) like any other device on the network
+
+   But trying to connect to another VM (Bridged or not) will not work unless you create (on the Windows host):
+    1) A Port forwarding Rule    (Using DOS netsh)
+    2) A Firewall Rule            (Using Windows Defender Firewall app)
+
+    This page contains steps (Worked Dec 11, 2024):
+    https://redfishiaven.medium.com/port-forwarding-in-windows-and-ways-to-set-it-up-c337e171086f

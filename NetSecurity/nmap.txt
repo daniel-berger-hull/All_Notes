@@ -3,3 +3,32 @@ nmap is a command line tool for port scanning and few other functions for a remo
 Following is a good sheet sheet of the command line option of nmap.
 
 https://www.stationx.net/nmap-cheat-sheet/
+
+Usefull Switch
+================
+
+Switch       Description           			Example
+------       ------------         			---------
+-sP			Ping all network   			        nmap -sP 10.0.0.1/24
+-sS			Ping Stealth				            nmap -sS -d 10.0.0.1/24
+-p<Port>	Ping specific ports			      nmap -p22 10.0.0.1/24
+										                    nmap -p22,80 10.0.0.1/24
+-O          Try to identify OS			    nmap -O 10.0.0.1/24
+-A           Detailed map **1: 			    nmap -A  10.0.0.10
+-D           Map from Decoy**2 			    nmap -sS -D  10.0.0.200 10.0.0.10
+
+**1	 Pull the OS version, Protocol version and a lot more
+       Note: Faster to map only or few ips (not a full lan, like 10.0.0.1/24)
+**2  Will look like another PC is mapping, not yours and 
+      you may add the -sS also
+     Note: in example the IP 10.0.0.200 is the decoy, 
+     		and the 10.0.0.10 will be scanned
+
+
+Scripting (nmap to run a script):
+  Switch --> --scripts
+    example: nmap --script vuln 10.0.0.10
+Note: the 'vuln' above is one among the many scripts available
+
+
+Check page https://nmap.org/book/nse.html for all script

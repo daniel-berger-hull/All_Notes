@@ -1,0 +1,6 @@
+expr permits the evaluation of calculation or string manipulation
+
+ Synthax:  result=`expr 2 + 6`
+           echo $result
+           --> Will display 8
+   Note: Only Backtilt ( ` `) works, not "" or ''
