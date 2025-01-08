@@ -1,0 +1,101 @@
+
+print & display
+===============
+
+ i) Simple Version:   echo "Something to print"
+    
+ ii) C like version:   printf "Something to print with%d\n" 3       
+     Note: No () required, unlike in C programming 
+
+ iii) Color printing: use the \033[XXm escape string in your echo
+
+    \033[31m'   #'31m' is Red's ANSI color code
+    \033[32m'   #'32m' is Green's ANSI color code
+    \033[0m'    #'0m' will reset to normal
+    
+  i.e -->   echo -e "\033[31mContent of result is \033[0m"
+  Note: Works only on echo
+        Use the -e param in the echo, will not work otherwise!
+        Make sure to reset after done (otherwise everything will be in color!)
+
+Variables
+=========
+ Declaration:  
+ ------------
+   VarName="A Value"   
+  --> Be very carefull, the space a not allowed 
+    i.e VarName = "A Value" will generate an error
+
+ Usage:
+-------
+
+    Use the $ sign
+    echo $VarName
+        or
+    echo "Some text before $VarName"
+    Warning: You must use the ", for value substitution!  The single quote ' will not work!
+
+ Array:
+ =======
+   my_arr=(1 2 'daniel')   --> Declaration
+  ${my_arr[0]}              --> Access
+  
+  Notes: * Do not use comma in the declaration  -->  my_arr=(1, 2, 3) Will not work!
+         * Index are starting at 0, not 1 !
+         * Can mix types, like integer and strings!
+
+  Array Length operator '#"
+  -------------------------  
+    ${#my_arr[@]}    -->  Lenght of all the array
+                          Make sure to use all signs  $, # and @, otherwise will not work!
+    ${#my_arr[2]}    --> Lenght of a single element, here a string which as 6 chars
+
+
+ Command Substitution  $( ):
+ ----------------------------
+
+
+   Will execute the content of the parentheses and output result into variable
+   location=$(pwd)
+   result=$(ls -l)
+   echo "My location is $location"
+    echo "content of result is \n${result}"
+
+
+Subprocess
+==========
+
+  Use the ( ) and it will process inside the parenthesis in its own shell, so there is impact on the calling shell
+ 
+  #! /bin/bash
+  # From folder /home/dxb160/data
+  pwd     # --> display /home/dxb160/data
+  (cd ..; pwd )  # --> will move to /home/dxb160 and display the current folder
+  pwd    #  --> will display again the starting location, /home/dxb160/data
+
+
+Bash script
+============
+
+Sub Script File
+----------------
+
+    You can invoke another script file (.sh) from inside a script file
+   Synthax:   ./<scriptName.sh>
+
+Arguments to sub script
+-----------------------
+   You can also pass parameters to the sub file
+
+  ./subscript.sh  5 'daniel'
+
+  Inside subscript.sh 
+    
+     echo $1   --> Will display 5
+     echo $2   --> Will display daniel
+
+     
+
+
+
+

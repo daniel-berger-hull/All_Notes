@@ -1,0 +1,22 @@
+check https://www.tutorialspoint.com/awk/awk_basic_examples.htm
+----------------------------------------------------------------------------------
+
+General
+========
+
+    The command part starts and end with an ''
+       example: '/a/ {print $4 "\t" $3}'
+
+Simple Pattern match:
+    Match a character:
+    awk '/a/' file.txt  --> Display any line where there is an 'a' characters somewhere
+
+
+Print Column:
+
+	If there are space in the lines, we can display selected columns
+	$0      -->     All line
+	$1		-->    First column,
+	And so on...
+ 
+    awk '/a/ {print $4 "\t" $3}' marks.txt    --> Display the column 4 and then 3 

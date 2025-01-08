@@ -2,7 +2,31 @@ Android Debug Bridge (ADB):
   appears to be a command line (Terminal) to run commands
 
   Installation: 
-  https://www.xda-developers.com/install-adb-windows-macos-linux/
-
+    https://www.xda-developers.com/install-adb-windows-macos-linux/
+  
+  Config (On your Android cell/device):
+   1 - Activate Developper Option
+        --> In the settings , l ocate the 'Build number'
+        --> Tap 5 to 7 times on the build number
+   2 - In Dev Options --> Enable USB Debugging
+  
+  Note: Appears to work inside a Windows' Powershell
+       Need to try on other type of console
+  
   Good Tutorial (Basic ADB commands):
   https://www.youtube.com/watch?v=uOPcUjVl2YQ&t=153s
+
+     * adb devices  --> List all deviceID the connected devices/emulator            
+     
+     *adb shell --> open a shell inside the device
+      Note: When more than one devices connected use --> adb shell -s <deviceID>
+
+      adb shell getprop  --> Will display all the properties of the phone
+
+      adb shell pm list packages --> Display all the applications and packages on the phone
+
+      adb pull <file_on_phone> <location> --> Get a file from the phone and download to PC
+      
+
+
+

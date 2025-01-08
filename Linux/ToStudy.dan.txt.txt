@@ -1,3 +1,13 @@
 tmux command:  
 -------------
 Can run multiple Terminal, you can organize them, just like it is done with the various screens inside an IDE.
+
+
+awk
+----
+  * command awk
+  * create function from the bash command line (May be handy, instead of create bash command file)
+
+ssh
+---
+  * Configure ssh server, with security key 
