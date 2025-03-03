@@ -103,3 +103,52 @@ Push an existing repository
 git remote add origin https://github.com/daniel-berger-hull/git-test.git
 git branch -M main
 git push -u origin main
+
+
+
+Credential Managers
+===================
+
+GitHub doesn't accept anymore plain password with you push change to your GitHub repo.
+You need a Credential Manager to acheive this.
+
+
+Linux Steps
+----------
+
+ (First steps are getting the tool to run...)
+
+1 - Download manager at: https://github.com/git-ecosystem/git-credential-manager/releases/tag/v2.6.1   
+    (i.e: gcm-linux_amd64.2.6.1.deb  )
+
+2 - Install the manager:     sudo dpkg -i <path-to-package>
+
+3 - Configure manager:       git-credential-manager configure
+
+  (Next is to create a tocken)
+
+From your GitHub
+4 - Select from right hand menu -->  'Settings'
+5 - Select from the LEFT hand menu  --> 'Developer Settings'    The last one in the menu
+6 - Select 'Personnal Access Token' -->  'Token (classic)
+7 - On button Button 'Generate new Token', expend and select 'Generate new Token (Classic)'
+8 - Enter all the fields required in the form (has a lot of permissions)
+9 - Click  button 'Generate Token'
+10 - Copy the token generated
+
+ (Next is to use the new token)
+
+From one of you repository already CLONED on your LOCAL machine (has to be inside a repo to work)
+
+11 - Enter 'git push'
+12 - Select the option with the token and copy it when asked 
+
+
+
+
+ 
+
+     git config --global credential.credentialStore cache
+
+Good video here: https://www.youtube.com/watch?v=kbx_digAd1s
+
